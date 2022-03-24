@@ -42,4 +42,9 @@ public class EquimentService implements IEquimentService {
     public void updateStatusF(Integer fan) {
     iEquimentRepository.updateStatusF(fan);
     }
+
+    @Override
+    public String findStatusLamp1() {
+        return iEquimentRepository.findStatusLamp1();
+    }
 }

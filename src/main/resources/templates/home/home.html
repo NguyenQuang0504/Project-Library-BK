@@ -49,6 +49,9 @@
             top: 15px;
 
         }
+        .card{
+            text-decoration: none;
+        }
         .main .control-1, .control-2 {
             display: inline-block;
             width: 45%;
@@ -128,7 +131,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a th:href="@{/control/home}">
                         <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
                         <span class="tittle">Phòng điều khiển</span>
                     </a>
@@ -202,7 +205,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <a class="card" th:href="@{/control/home}">
                     <div>
                         <div class="numbers">2</div>
                         <div class="cardName">Phòng điều khiển</div>
@@ -210,7 +213,7 @@
                     <div class="iconBox">
                         <ion-icon name="speedometer"></ion-icon>
                     </div>
-                </div>
+                </a>
                 <div class="card">
                     <div>
                         <div class="numbers">2</div>

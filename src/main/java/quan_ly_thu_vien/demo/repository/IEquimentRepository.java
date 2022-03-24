@@ -25,4 +25,6 @@ public interface IEquimentRepository extends JpaRepository<Equipment, Integer> {
     @Modifying
     @Query(value = "update equipment set status = ?1 where id = 5;", nativeQuery = true)
     void updateStatusF(Integer fan);
+    @Query(value = "select status from equipment where id = 4;", nativeQuery = true)
+    String findStatusLamp1();
 }

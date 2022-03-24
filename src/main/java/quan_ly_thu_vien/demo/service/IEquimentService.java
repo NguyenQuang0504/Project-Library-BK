@@ -16,4 +16,6 @@ public interface IEquimentService {
     void updateStatusL(Integer lamp);
 
     void updateStatusF(Integer fan);
+
+    String findStatusLamp1();
 }
