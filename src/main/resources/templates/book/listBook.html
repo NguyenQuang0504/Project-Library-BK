@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .content-header{
+            position: absolute;
+            left: 275px;
+            top: 15px;
+        }
+        .table-control td, th {
+            border: 10px solid black;border: 10px solid black;
+        }
+        th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        .table-control span {
+            font-size: 25px;
+            color: #000000;
+            font-family: Arial;
+        }
+        #listCategory{
+            padding-top: 20px;
+        }
+        #tableOne{
+            margin-top: 45px;
+            width: 80%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #tableOne tr{
+
+            height: 40px;
+            font-size: 20px;
+            font-family: system-ui;
+        }
+        #tableOne tr:nth-child(even){
+            background-color: #999999;
+        }
+        #tableOne th{
+            background-color: #64d8ff;
+        }
+        #header-table{
+            font-size: 25px;
+            font-family: system-ui;
+            font-weight: 600;
+        }
+        #search{
+            margin: 10px 20px;
+            display: inline-block;
+        }
+        #search input{
+            border: 1px solid;
+            height: 30px;
+            font-size: 20px;
+        }
+        #search .button-search{
+            border: none;
+            width: 90px;
+            height: 35px;
+        }
+        #search .button-search:hover{
+            cursor: pointer;
+            background-color: red;
+            color: black;
+        }
+        #search p{
+            font-family: system-ui;
+            font-weight: 600;
+            font-size: 25px;
+        }
+        #create{
+            display: inline-block;
+        }
+        #add a{
+            position: absolute;
+            left: 40px;
+            color: black;
+            text-decoration: none;
+            font-family: cursive;
+            font-weight: 500;
+            font-size: 20px;
+            margin-top: -15px;
+        }
+        #add a:hover{
+            color: red;
+        }
+        #add {
+            display: inline-block;
+        }
+        #create a{
+            position: absolute;
+            right: 40px;
+            color: black;
+            text-decoration: none;
+            font-family: cursive;
+            font-weight: 500;
+            font-size: 20px;
+            margin-top: -15px;
+        }
+        #create a:hover{
+            color: red;
+        }
+        input[type="text"]::placeholder {
+            text-align: left;
+            padding-left: 10px;
+            line-height: 30px;
+        }
+    </style>
+    <script type="text/javascript">
+        function getData(listBook) {
+            return `    <tr>
+                        <td>${listBook.id}</td>
+                        <td>${listBook.name}</td>
+                        <td>${listBook.author}</td>
+                        <td>${listBook.numBook}</td>
+                        <td>${listBook.category.category}</td>
+                        </tr>
+                   `;
+        }
+        function getSearch() {
+            let input_search = $("#input-search").val();
+            $.ajax({
+                type :"GET",
+                data: {Search1 : input_search},
+                url:"/book/search",
+                success : function (data) {
+                   let content = `<tr>
+                        <th>Id</th>
+                        <th>Tên sách</th>
+                        <th>Tác giả</th>
+                        <th>Số lượng</th>
+                        <th>Chủ đề</th>
+                    </tr>`;
+                   for (let i = 0;i<data.length;i++){
+                       content += getData(data[i]);
+                   }
+                    document.getElementById("tableOne").innerHTML = content;
+                }
+            })
+            event.preventDefault();
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
+                    <span class="tittle">Library BK</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/home/display}">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="tittle">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Sinh viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Giảng viên</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/display}">
+                    <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="tittle">Sách</span>
+                </a>
+            </li>
+            <li>
+                <a  th:href="@{/control/home}">
+                    <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
+                    <span class="tittle">Phòng điều khiển</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <span class="tittle">Thông báo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="tittle">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Thong tin-->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div>
+                   <span><img style=" position: absolute;
+                                width: 70px;
+                                left: 200px;
+                                top: 5px;"
+                              src="/image/Logodhbk.jpg" alt=""></span>
+            </div>
+            <div class="content-header">
+                <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
+                <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="user">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <hr style="margin-top: 30px">
+        <div id="listCategory">
+            <div id="search">
+                <p>Tìm kiếm</p>
+                <input type="text" id="input-search" placeholder="Search">
+                <input type="button" onclick="getSearch()" value="Search" class="button-search">
+            </div>
+            <center>
+                <h3 id="header-table">SÁCH </h3>
+                <table  id="tableOne">
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên sách</th>
+                        <th>Tác giả</th>
+                        <th>Số lượng</th>
+                    </tr>
+                    <tr th:each="book :${listBook}">
+                        <td th:text="${book.getId()}"></td>
+                        <td th:text="${book.getName()}"></td>
+                        <td th:text="${book.getAuthor()}"></td>
+                        <td th:text="${book.getNumBook()}"></td>
+                    </tr>
+                </table>
+                <div>
+                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}">Back <span><ion-icon name="arrow-dropright"></ion-icon></span></a>
+                    <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
+                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}">Next <span><ion-icon name="arrow-dropleft"></ion-icon></span></a>
+                </div>
+            </center>
+        </div>
+        <div>
+            <div id="create" style="position: static">
+                <a th:href="@{/book/create}">THÊM SÁCH MỚI</a>
+            </div>
+            <div id="add" style="position: static">
+                <a th:href="@{/book/addBook}">THÊM SÁCH ĐÃ CÓ</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script  src="/javascript/homejs.js"></script>
+</body>
+</html>
