@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         .switch input {
             opacity: 0;
@@ -66,7 +65,7 @@
             border-collapse: collapse;
         }
         #tableOne tr:nth-child(even){
-            background-color: #cccccc;
+            background-color: #c4cccc;
         }
         #tableOne th{
             background-color: #000000;
@@ -78,128 +77,17 @@
             font-weight: 600;
             padding-top: 15px;
         }
-        #search input{
-            border: 1px unset;
-            height: 100%;
-            font-size: 20px;
-        }
-        #search .button-search{
-            border-radius: 30px;
-            -moz-border-radius: 30px;
-            -webkit-border-radius: 30px;
-            border: none;
-            width: 88px;
-            height: 100%;
-            background-color: #cccccc;
-        }
-        #search .button-search:hover{
-            cursor: pointer;
-            background: black;
-            color: white;
-        }
-        #search p{
-            font-family: system-ui;
-            font-weight: 600;
-            font-size: 25px;
-        }
-        #create{
-            display: inline-block;
-        }
-        #add a{
-            position: absolute;
-            left: 40px;
-            color: black;
-            text-decoration: none;
-            font-family: cursive;
-            font-weight: 500;
-            font-size: 15px;
-            margin-top: -15px;
-        }
-        #add a:hover{
-            color: red;
-        }
-        #add {
-            display: inline-block;
-        }
-        #create a{
-            position: absolute;
-            right: 40px;
-            color: black;
-            text-decoration: none;
-            font-family: cursive;
-            font-weight: 500;
-            font-size: 15px;
-            margin-top: -15px;
-        }
-        #create a:hover{
-            color: red;
-        }
-        #nav-table{
-            position: relative;
-            width: 100%;
-            height: 15px;
-            margin-top: -35px;
-        }
-        #search{
-            position: absolute;
-            display: inline-block;
-            position: absolute;
-            display: inline-block;
-            right: 6%;
-            top: 38px;
-            height: 40px;
-        }
-        #back{
-            position: absolute;
-            position: absolute;
-            left: 4%;
-            top: 50px;
-            font-size: 25px;
-        }
-        #input-search{
-            padding: 10px 30px;
-            border-radius: 30px;
-            -moz-border-radius: 30px;
-            -webkit-border-radius: 30px;
-            border: none;
-            background: #cccccc;
-            color: black;
-            cursor: pointer;
-        }
+    #name-student{
+        position: absolute;
+        /* padding: 27px; */
+        padding-left: 5%;
+        font-size: 25px;
+        padding-top: 20px;
+        font-family: system-ui;
+    }
     </style>
-    <script type="text/javascript">
-        function getData(listBook) {
-            return `    <tr>
-                        <td>${listBook.book_id}</td>
-                        <td>${listBook.name}</td>
-                        <td>${listBook.author}</td>
-                        <td>${listBook.numBook}</td>
-                        <td>${listBook.category.category}</td>
-                        </tr>
-                   `;
-        }
-        function getSearch() {
-            let input_search = $("#input-search").val();
-            $.ajax({
-                type :"GET",
-                data: {Search1 : input_search},
-                url:"/book/search",
-                success : function (data) {
-                   let content = `<tr>
-                        <th>Id</th>
-                        <th>Tên sách</th>
-                        <th>Tác giả</th>
-                        <th>Số lượng</th>
-                        <th>Chủ đề</th>
-                    </tr>`;
-                   for (let i = 0;i<data.length;i++){
-                       content += getData(data[i]);
-                   }
-                    document.getElementById("tableOne").innerHTML = content;
-                }
-            })
-            event.preventDefault();
-        }
+    <script>
+        
     </script>
 </head>
 <body>
@@ -279,53 +167,40 @@
             </div>
         </div>
         <hr style="margin-top: 30px">
-        <div style="padding-top: 20px;">
-        <center>
-            <h3 id="header-table">SÁCH</h3>
-        </center>
-        <div id="nav-table">
-            <div id="back">
-                <a  th:href="@{/book/display}">
-                    <span class="icon"></span>
-                    <span>Back to list</span>
-                </a>
-            </div>
-            <div id="search">
-                <input type="text" id="input-search" placeholder="Search...">
-                <input type="button" onclick="getSearch()" value="Search" class="button-search">
-            </div>
-        </div>
         <div id="listCategory">
             <center>
+                <h3 id="header-table">SÁCH ĐÃ MƯỢN</h3>
+                <div id="name-student">
+                <span>Sinh viên:</span><span th:text="${name}"></span>
+                </div>
                 <table  id="tableOne">
+                    <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Tên sách</th>
+                        <th>Tên Sách</th>
                         <th>Tác giả</th>
-                        <th>Số lượng</th>
+                        <th>Ngày mượn</th>
+                        <th>Ngày trả</th>
+                        <th>Trả sách</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr th:each="book :${listBook}">
-                        <td th:text="${book.getBook_id()}"></td>
-                        <td th:text="${book.getName()}"></td>
-                        <td th:text="${book.getAuthor()}"></td>
-                        <td th:text="${book.getNumBook()}"></td>
+                        <td th:text="${book.idBookStudent}"></td>
+                        <td th:text="${book.getBook().getName()}"></td>
+                        <td th:text="${book.getBook().getAuthor()}"></td>
+                        <td th:text="${book.getDateStart()}"></td>
+                        <td th:text="${book.getDateEnd()}"></td>
+                        <td><a th:href="@{/book/return/{id}(id=${book.idBookStudent})}">Trả sách</a></td>
                     </tr>
+                    </tbody>
                 </table>
                 <div>
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}">Back <span><ion-icon name="arrow-dropright"></ion-icon></span></a>
+                    <a style="text-decoration: none" th:href="@{'/book/show/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}"><span>Back</span></a>
                     <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}">Next <span><ion-icon name="arrow-dropleft"></ion-icon></span></a>
+                    <a style="text-decoration: none" th:href="@{'/book/show/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}"><span>Next</span></a>
                 </div>
             </center>
-        </div>
-        <div>
-            <div id="create" style="position: static">
-                <a th:href="@{/book/create}">THÊM SÁCH MỚI</a>
-            </div>
-            <div id="add" style="position: static">
-                <a th:href="@{/book/addBook}">THÊM SÁCH ĐÃ CÓ</a>
-            </div>
-        </div>
         </div>
     </div>
 </div>

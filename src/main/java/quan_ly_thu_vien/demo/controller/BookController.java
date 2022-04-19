@@ -11,9 +11,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import quan_ly_thu_vien.demo.model.Book;
+import quan_ly_thu_vien.demo.model.BookStudent;
 import quan_ly_thu_vien.demo.model.CategoryBook;
+import quan_ly_thu_vien.demo.model.Student;
 import quan_ly_thu_vien.demo.service.IBookService;
+import quan_ly_thu_vien.demo.service.IBookStudentService;
 import quan_ly_thu_vien.demo.service.ICategoryBookService;
+import quan_ly_thu_vien.demo.service.IStudentService;
 
 import java.util.List;
 
@@ -25,6 +29,10 @@ public class BookController {
     private IBookService iBookService;
     @Autowired
     private ICategoryBookService iCategoryBookService;
+    @Autowired
+    private IBookStudentService iBookStudentService;
+    @Autowired
+    private IStudentService iStudentService;
     @GetMapping("/display")
         public ModelAndView getListCategory(@PageableDefault(size = 7) Pageable pageable){
         Page<CategoryBook> list = iCategoryBookService.findAll(pageable);
@@ -58,4 +66,26 @@ public class BookController {
         ModelAndView modelAndView = new ModelAndView("book/home", "listCategory", list);
         return modelAndView;
     }
+    @GetMapping("/show/{id}")
+    public ModelAndView showBook(@PageableDefault(size = 7)Pageable pageable,@PathVariable Integer id, ModelMap modelMap){
+        Page<BookStudent> list = iBookStudentService.findAllById(id, pageable);
+        String name = iStudentService.getNameStudent(id);
+        modelMap.addAttribute("name", name);
+        modelMap.addAttribute("id", id);
+        return new ModelAndView("student/listBook", "listBook", list);
+    }
+    @GetMapping("/getBook/{id}")
+    public ModelAndView getBook(@PathVariable Integer id, ModelMap modelMap){
+        Student student = iStudentService.findById(id);
+        modelMap.addAttribute("student1", student);
+        List<Book> bookList = iBookService.findAll();
+        modelMap.addAttribute("listBook", bookList);
+        modelMap.addAttribute("id", id);
+        BookStudent bookStudent = new BookStudent();
+        return new ModelAndView("student/getBook", "bookStudent", bookStudent);
+    }
+//    @GetMapping("/return/{id}")
+//    public ResponseEntity<List<BookStudent>> display(@PathVariable Integer id){
+//
+//    }
 }

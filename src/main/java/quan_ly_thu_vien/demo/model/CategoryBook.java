@@ -11,9 +11,11 @@ public class CategoryBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String category;
+
     @JsonBackReference
     @OneToMany(mappedBy = "category")
     List<Book> bookList;
+
     public CategoryBook() {
     }
 

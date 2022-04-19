@@ -56,10 +56,16 @@
             display: inline-block;
             width: 45%;
             height: 90%;
-            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-            background-color: #bafffd;
+            background-color: white;
             position: absolute;
             top: 15px;
+            padding: 10px 30px;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border: none;
+            color: black;
+            cursor: pointer;
         }
         .main .control-1 span{
             font-size: 25px;
@@ -85,7 +91,7 @@
             margin-top: 30px;
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
             border-radius: 20px;
-            background-color: #64d8ff;
+            background-color: #d3d3d3;
             height: 325px;
             right: 29px;
             position: absolute;
@@ -113,7 +119,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a th:href="@{/student/home}">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                         <span class="tittle">Sinh viên</span>
                     </a>
@@ -175,15 +181,15 @@
 
             <!--phan chinh thong tin-->
             <div style="  grid-template-columns: repeat(5,1fr);" class="cardBox">
-                <div class="card">
+                <a th:href="@{/student/home}" class="card">
                     <div>
-                        <div class="numbers">40</div>
+                        <div class="numbers" th:text="${sizeStudent}"></div>
                         <div class="cardName">Sinh viên</div>
                     </div>
                     <div class="iconBox">
                         <ion-icon name="people-outline"></ion-icon>
                     </div>
-                </div>
+                </a>
 
                 <div class="card">
                     <div>
@@ -197,7 +203,7 @@
 
                 <a class="card" th:href="@{/book/display}">
                     <div>
-                        <div class="numbers">10</div>
+                        <div class="numbers" th:text="${size}"></div>
                         <div class="cardName">Sách</div>
                     </div>
                     <div class="iconBox">

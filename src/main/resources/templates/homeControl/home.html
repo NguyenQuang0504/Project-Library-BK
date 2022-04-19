@@ -36,8 +36,8 @@
                             <hr>
                             <table style="width: 100%">
                                         <tr>
-                                            <th>ĐÈN</th>
-                                            <th>QUẠT</th>
+                                            <th><span>ĐÈN</span></th>
+                                            <th><span>QUẠT</span></th>
                                         </tr>
                                         <tr>
                                             <th>
@@ -103,6 +103,7 @@
             })
         })
     </script>
+<!--    CSS home control-->
     <style>
         .switch {
             position: relative;
@@ -186,6 +187,20 @@
             color: #000000;
             font-family: Arial;
         }
+        #tr-control{
+            height: 50px;
+            background-color: #cccccc;
+        }
+        #tr-control h3{
+            font-size: 30px;
+            font-family: system-ui;
+        }
+        #header-table{
+            font-size: 25px;
+            font-family: system-ui;
+            font-weight: 600;
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -205,7 +220,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a th:href="@{/student/home}">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                         <span class="tittle">Sinh viên</span>
                     </a>
@@ -266,15 +281,12 @@
             </div>
             <hr style="margin-top: 30px">
             <center>
-                <h3 style="font-size: 25px;
-                    font-family: system-ui;
-                    font-weight: 600;
-                    margin-top: 25px;">PHÒNG GIÁM SÁT, ĐIỀU KHIỂN</h3>
+                <h3 id="header-table">PHÒNG GIÁM SÁT, ĐIỀU KHIỂN</h3>
             </center>
             <div>
                 <center>
                 <table class="table-control">
-                    <tr>
+                    <tr id="tr-control">
                         <th><h3>Phòng 1</h3></th>
                         <th><h3>Phòng 2</h3></th>
                     </tr>
@@ -295,8 +307,16 @@
                                     <hr>
                                     <table style="width: 100%">
                                         <tr>
-                                            <th>ĐÈN</th>
-                                            <th>QUẠT</th>
+                                            <th>
+                                                <span>
+                                                    ĐÈN
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span>
+                                                    QUẠT
+                                                </span>
+                                            </th>
                                         </tr>
                                         <tr>
                                             <th>
@@ -332,8 +352,12 @@
                                 <hr>
                                 <table style="width: 100%">
                                     <tr>
-                                        <th>ĐÈN</th>
-                                        <th>QUẠT</th>
+                                        <th>
+                                            <span>ĐÈN</span>
+                                        </th>
+                                        <th>
+                                            <span>QUẠT</span>
+                                        </th>
                                     </tr>
                                     <tr>
                                         <th>

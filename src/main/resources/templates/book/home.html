@@ -65,7 +65,7 @@
             border-collapse: collapse;
         }
         #tableOne tr:nth-child(even){
-            background-color: #cccccc;
+            background-color: #c4cccc;
         }
         #tableOne th{
             background-color: #000000;
@@ -75,6 +75,7 @@
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
+            padding-top: 15px;
         }
 
     </style>
@@ -96,7 +97,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/student/home}">
                     <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
                     <span class="tittle">Sinh viên</span>
                 </a>
