@@ -107,32 +107,28 @@
         }
         #add a{
             position: absolute;
-            left: 40px;
+            left: 55px;
             color: black;
             text-decoration: none;
-            font-family: cursive;
-            font-weight: 500;
-            font-size: 15px;
+            font-family: system-ui;
             margin-top: -15px;
         }
         #add a:hover{
-            color: red;
+            color: #cccccc;
         }
         #add {
             display: inline-block;
         }
         #create a{
             position: absolute;
-            right: 40px;
+            right: 55px;
             color: black;
             text-decoration: none;
-            font-family: cursive;
-            font-weight: 500;
-            font-size: 15px;
+            font-family: system-ui;
             margin-top: -15px;
         }
         #create a:hover{
-            color: red;
+            color: #cccccc;
         }
         #nav-table{
             position: relative;
@@ -165,6 +161,15 @@
             background: #cccccc;
             color: black;
             cursor: pointer;
+        }
+        .back-list{
+            text-decoration: none;
+            color: black;
+            margin-left: 15px;
+            font-family: system-ui;
+        }
+        .back-list:hover{
+            color: #999999;
         }
     </style>
     <script type="text/javascript">
@@ -285,8 +290,12 @@
         </center>
         <div id="nav-table">
             <div id="back">
-                <a  th:href="@{/book/display}">
-                    <span class="icon"></span>
+                <a class="back-list" th:href="@{/book/display}">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-backspace-fill" viewBox="0 0 16 16">
+                             <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
+                        </svg>
+                    </span>
                     <span>Back to list</span>
                 </a>
             </div>
@@ -312,12 +321,22 @@
                     </tr>
                 </table>
                 <div>
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}">Back <span><ion-icon name="arrow-dropright"></ion-icon></span></a>
+                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}"><span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+                       </svg>
+                    </span>BACK</a>
                     <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}">Next <span><ion-icon name="arrow-dropleft"></ion-icon></span></a>
+                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}">Next <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                             <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+                        </svg>
+                    </span></a>
                 </div>
             </center>
         </div>
+            <br>
+            <hr>
         <div>
             <div id="create" style="position: static">
                 <a th:href="@{/book/create}">THÊM SÁCH MỚI</a>
