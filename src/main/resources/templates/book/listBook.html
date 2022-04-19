@@ -317,7 +317,7 @@
                         <th>Số lượng</th>
                     </tr>
                     <tr th:each="book :${listBook}">
-                        <td th:text="${book.getBook_id()}"></td>
+                        <td th:text="${book.book_id}"></td>
                         <td th:text="${book.getName()}"></td>
                         <td th:text="${book.getAuthor()}"></td>
                         <td th:text="${book.getNumBook()}"></td>
