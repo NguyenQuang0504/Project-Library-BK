@@ -32,6 +32,7 @@ public class ControllerBook {
     private IBookStudentService iBookStudentService;
     @Autowired
     private IStudentService iStudentService;
+
     @GetMapping("/create")
     public String createBook(ModelMap modelMap){
         List<CategoryBook> categoryBookList = iCategoryBookService.findAll();
@@ -40,13 +41,13 @@ public class ControllerBook {
         return "book/create";
     }
     @PostMapping("/save")
-    public String save(@Validated @ModelAttribute(name = "listBook") Book listBook, BindingResult bindingResult, ModelMap modelMap){
+    public String save(@Validated @ModelAttribute(name = "listBook") Book listBook1, BindingResult bindingResult, ModelMap modelMap){
         if (bindingResult.hasFieldErrors()){
             List<CategoryBook> categoryBookList = iCategoryBookService.findAll();
             modelMap.addAttribute("listCategory", categoryBookList);
             return "book/create";
         }
-        iBookService.save(listBook);
+        iBookService.save(listBook1);
         return "redirect:/book/display";
     }
     @GetMapping("/display")
