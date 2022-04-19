@@ -23,4 +23,9 @@ public class StudentRestController {
         List<Student> listResponseEntity = iStudentService.findByName(Name);
         return new ResponseEntity<>(listResponseEntity, HttpStatus.OK);
     }
+    @GetMapping("/list")
+    public ResponseEntity<List<Student>> display(){
+        List<Student> studentList = iStudentService.findAll();
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
+    }
 }

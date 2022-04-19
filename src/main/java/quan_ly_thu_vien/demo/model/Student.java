@@ -17,7 +17,7 @@ public class Student {
     private String className;
     private String email;
     private String phone;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "student")
     private List<BookStudent> bookStudentList;
 
