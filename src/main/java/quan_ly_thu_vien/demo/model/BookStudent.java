@@ -1,13 +1,19 @@
 package quan_ly_thu_vien.demo.model;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class BookStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBookStudent;
+    @NotEmpty(message = "Vui long chon ngay bat dau")
     private String dateStart;
+    @NotEmpty(message = "Vui long chon ngay tra sach")
     private String dateEnd;
 
     public BookStudent(Student student) {

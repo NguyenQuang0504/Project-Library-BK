@@ -149,14 +149,17 @@
                     <span class="input-group-text"> Tên sách: </span>
                     <input th:field="*{name}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name</p>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Tác giả:</span>
                     <input th:field="*{author}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <p style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author</p>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Số lượng sách:</span>
                     <input th:field="*{numBook}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <p style="color: red" th:if="${#fields.hasErrors('numBook')}" th:errors="*{numBook}">NumBook</p>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Thể loại sách:</span>
                 <select th:field="*{category}"  class="form-select" aria-label="Default select example" >

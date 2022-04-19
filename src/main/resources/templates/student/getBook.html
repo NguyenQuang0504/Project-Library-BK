@@ -156,10 +156,12 @@
                     <span class="input-group-text"> Ngày mượn </span>
                     <input th:field="*{dateStart}" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <p style="color: red" th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}">DateStart</p>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Ngày trả</span>
                     <input th:field="*{dateEnd}" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <p style="color: red" th:if="${#fields.hasErrors('dateEnd')}" th:errors="*{dateEnd}">DateEnd</p>
                 <br>
                 <div class="d-grid gap-2">
                     <button class="btn btn-primary" type="submit">Thêm sách</button>

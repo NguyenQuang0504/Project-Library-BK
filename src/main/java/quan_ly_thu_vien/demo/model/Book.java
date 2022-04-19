@@ -3,6 +3,7 @@ package quan_ly_thu_vien.demo.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -10,8 +11,12 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer book_id;
+    @NotEmpty(message = "Khong duoc de trong")
+    @Size(min = 1, max = 255, message = "Do dai khong phu hop")
     private String name;
+    @NotEmpty(message = "Khong duoc de trong")
     private String author;
+    @NotNull(message = "Khong duoc de trong")
     private Integer numBook;
 
     public Integer getBook_id() {
