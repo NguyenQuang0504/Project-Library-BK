@@ -1,10 +1,14 @@
 package quan_ly_thu_vien.demo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 @Entity
 public class BookStudent {
@@ -18,6 +22,10 @@ public class BookStudent {
 
     public BookStudent(Student student) {
         this.student = student;
+    }
+
+    public BookStudent(@NotEmpty(message = "Vui long chon ngay bat dau") String dateStart) {
+        this.dateStart = dateStart;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +42,11 @@ public class BookStudent {
         this.dateEnd = dateEnd;
         this.student = student;
         this.book = book;
+    }
+
+    public BookStudent(@NotEmpty(message = "Vui long chon ngay bat dau") String dateStart, @NotEmpty(message = "Vui long chon ngay tra sach") String dateEnd) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
     }
 
     public BookStudent() {

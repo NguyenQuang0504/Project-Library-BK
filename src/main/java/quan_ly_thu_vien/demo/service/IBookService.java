@@ -14,4 +14,16 @@ public interface IBookService  {
     List<Book> search1(String search);
 
     void save(Book listBook);
+
+    void setNumBook(Integer book_id);
+
+    int getNumBook(Integer book_id);
+
+    void delete(Integer book_id);
+
+    List<Book> findAllBook();
+
+    void returnBook(Integer idBook);
+
+    void addBook(Integer book, Integer numBook);
 }

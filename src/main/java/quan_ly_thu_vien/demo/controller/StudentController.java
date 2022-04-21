@@ -46,6 +46,7 @@ public class StudentController {
         }
         bookStudent.setStudent(iStudentService.findById(id));
         iBookStudentService.save(bookStudent);
+        iBookService.setNumBook(bookStudent.getBook().getBook_id());
         return "redirect:/student/home";
     }
 }

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
     <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
     <style>
         .switch input {
             opacity: 0;
@@ -87,7 +91,6 @@
     }
     </style>
     <script>
-        
     </script>
 </head>
 <body>
@@ -191,7 +194,7 @@
                         <td th:text="${book.getBook().getAuthor()}"></td>
                         <td th:text="${book.getDateStart()}"></td>
                         <td th:text="${book.getDateEnd()}"></td>
-                        <td><a th:href="@{/book/return/{id}(id=${book.idBookStudent})}">Trả sách</a></td>
+                        <td><a th:href="@{/book/return/{id}/{idBook}/{idStudent}(id=${book.idBookStudent}, idBook=${book.getBook().book_id}, idStudent=${book.student.student_id})}">Trả sách</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,5 +1,4 @@
 package quan_ly_thu_vien.demo.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +18,9 @@ import quan_ly_thu_vien.demo.service.IBookStudentService;
 import quan_ly_thu_vien.demo.service.ICategoryBookService;
 import quan_ly_thu_vien.demo.service.IStudentService;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -67,10 +69,36 @@ public class ControllerBook {
     public ModelAndView getBook(@PathVariable Integer id, ModelMap modelMap){
         Student student = iStudentService.findById(id);
         modelMap.addAttribute("student1", student);
-        List<Book> bookList = iBookService.findAll();
+        List<Book> bookList = iBookService.findAllBook();
+        // Chuyen mac dinh sang mm/dd/yyy
+        LocalDate dateStart = LocalDate.now();
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String text = dateStart.format(formatters);
+        // Cong ngay bat dau them 30 day de add vao ngay phai tra
+        LocalDate dateEnd = dateStart.plusDays(30);
+        DateTimeFormatter formatters1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String text1 = dateEnd.format(formatters1);
         modelMap.addAttribute("listBook", bookList);
         modelMap.addAttribute("id", id);
-        BookStudent bookStudent = new BookStudent();
+        // Tao bookStudent voi ngay muon la ngay hien tai, ngay tra la ngay mac dinh 1 thang
+        BookStudent bookStudent = new BookStudent(text, text1);
         return new ModelAndView("student/getBook", "bookStudent", bookStudent);
+    }
+    @GetMapping("/return/{id}/{idBook}/{idStudent}")
+    public String returnBook(@PathVariable Integer id, @PathVariable Integer idBook, @PathVariable Integer idStudent){
+        iBookStudentService.delete(id);
+        iBookService.returnBook(idBook);
+        return "redirect:/book/show/"+idStudent;
+    }
+    @GetMapping("/addBook")
+    public String addBook(ModelMap modelMap){
+        List<Book> listBook = iBookService.findAll();
+        modelMap.addAttribute("listBook", listBook);
+        return "book/addBook";
+    }
+    @PostMapping("/add")
+    public String add(@RequestParam Integer numBook, @RequestParam Integer book){
+        iBookService.addBook(book, numBook);
+        return "redirect:/book/display";
     }
 }

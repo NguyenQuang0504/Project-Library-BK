@@ -1,10 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <style>
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .content-header1{
+            position: absolute;
+            left: 275px;
+            top: 15px;
+            font-family: none;
+        }
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            margin-left: 0;
+            margin-right: 0;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        #header-table{
+            font-size: 25px;
+            font-family: system-ui;
+            font-weight: 600;
+            padding-top: 20px;
+            padding-bottom: 75px;
+        }
+        .navigation.active{
+            width: 110px;
+            left: -35px;
+        }
+        .navigation{
+            left: 0px;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div>
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
+                    <span class="tittle">Library BK</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/home/display}">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="tittle">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/student/home}">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Sinh viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Giảng viên</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/display}">
+                    <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="tittle">Sách</span>
+                </a>
+            </li>
+            <li>
+                <a  th:href="@{/control/home}">
+                    <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
+                    <span class="tittle">Phòng điều khiển</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <span class="tittle">Thông báo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="tittle">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Thong tin-->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div>
+                   <span><img style=" position: absolute;
+                                width: 70px;
+                                left: 200px;
+                                top: 5px;"
+                              src="/image/Logodhbk.jpg" alt=""></span>
+            </div>
+            <div class="content-header1">
+                <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
+                <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="user">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <hr style="margin-top: 30px">
+        <div class="container">
+            <CENTER>
+                <h3 id="header-table">THÊM SÁCH ĐÃ CÓ</h3>
+            </CENTER>
+            <form method="post" th:action="@{/book/add}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Chọn sách:</span>
+                    <select name="book"  class="form-select" aria-label="Default select example" >
+                        <!--                    <option selected>Open this select menu</option>-->
+                        <option th:each="category :${listBook}" th:value="${category.getBook_id()}"><p th:text="${category.getName()}"></p></option>
+                    </select>
+                </div>
+                <div>
+                    <span class="input-group-text">Số lượng</span>
+                    <input name="numBook" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Thêm sách</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script  src="/javascript/homejs.js"></script>
 </body>
 </html>

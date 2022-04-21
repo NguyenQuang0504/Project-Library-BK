@@ -34,4 +34,34 @@ public class BookService implements IBookService {
         iBookRepository.save(listBook);
     }
 
+    @Override
+    public void setNumBook(Integer book_id) {
+        iBookRepository.setNumBook(book_id);
+    }
+
+    @Override
+    public int getNumBook(Integer book_id) {
+        return iBookRepository.getNumBook(book_id);
+    }
+
+    @Override
+    public void delete(Integer book_id) {
+        iBookRepository.deleteById(book_id);
+    }
+
+    @Override
+    public List<Book> findAllBook() {
+        return iBookRepository.findAllBook();
+    }
+
+    @Override
+    public void returnBook(Integer idBook) {
+        iBookRepository.returnBook(idBook);
+    }
+
+    @Override
+    public void addBook(Integer book, Integer numBook) {
+        iBookRepository.addBook(book, numBook);
+    }
+
 }

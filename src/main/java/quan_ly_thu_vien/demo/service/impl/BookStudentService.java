@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import quan_ly_thu_vien.demo.model.BookStudent;
 import quan_ly_thu_vien.demo.repository.IBookStudentRepository;
 import quan_ly_thu_vien.demo.service.IBookStudentService;
+
+import java.util.List;
+
 @Service
 public class BookStudentService implements IBookStudentService {
     @Autowired
@@ -25,5 +28,15 @@ public class BookStudentService implements IBookStudentService {
     @Override
     public void save(BookStudent bookStudent) {
         iBookStudentRepository.save(bookStudent);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        iBookStudentRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<BookStudent> findAll(Pageable pageable) {
+       return iBookStudentRepository.findAll(pageable);
     }
 }

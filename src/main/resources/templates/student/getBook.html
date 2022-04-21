@@ -51,7 +51,7 @@
             left: -35px;
         }
         .navigation{
-            left: -35px;
+            left: 0px;
         }
         #header-table{
             font-size: 25px;
@@ -154,9 +154,9 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"> Ngày mượn </span>
-                    <input th:field="*{dateStart}" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input id="date-start" th:field="*{dateStart}" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <p style="color: red" th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}">DateStart</p>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('dateStart')}" th:errors="*{dateStart}">DateStart</p>-->
                 <div class="input-group mb-3">
                     <span class="input-group-text">Ngày trả</span>
                     <input th:field="*{dateEnd}" type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
