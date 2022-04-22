@@ -16,4 +16,6 @@ public interface IBookStudentService {
     void delete(Integer id);
 
     Page<BookStudent> findAll(Pageable pageable);
+
+    List<Integer> findByDate(String text);
 }

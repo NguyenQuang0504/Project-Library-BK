@@ -30,60 +30,73 @@
         }
 
         /* Rounded sliders */
-        .content-header{
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
         }
+
         .table-control td, th {
-            border: 10px solid black;border: 10px solid black;
+            border: 10px solid black;
+            border: 10px solid black;
         }
+
         th, td {
             border-collapse: collapse;
             border: 1px solid black;
         }
+
         .table-control span {
             font-size: 25px;
             color: #000000;
             font-family: Arial;
         }
-        #listCategory{
+
+        #listCategory {
             padding-top: 20px;
         }
-        #tableOne{
+
+        #tableOne {
             margin-top: 55px;
             width: 90%;
         }
-        #tableOne tr{
+
+        #tableOne tr {
             height: 40px;
             font-size: 20px;
             font-family: system-ui;
         }
-        #tableOne th, td{
+
+        #tableOne th, td {
             text-align: left;
             padding: 8px;
             border: 0px solid white;
             border-collapse: collapse;
         }
-        #tableOne tr:nth-child(even){
+
+        #tableOne tr:nth-child(even) {
             background-color: #cccccc;
         }
-        #tableOne th{
+
+        #tableOne th {
             background-color: #000000;
             color: white;
         }
-        #header-table{
+
+        #header-table {
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
             padding-top: 15px;
         }
-        #search input{
+
+        #search input {
             border: 1px unset;
             height: 100%;
             font-size: 20px;
         }
-        #search .button-search{
+
+        #search .button-search {
             border-radius: 30px;
             -moz-border-radius: 30px;
             -webkit-border-radius: 30px;
@@ -92,20 +105,24 @@
             height: 100%;
             background-color: #cccccc;
         }
-        #search .button-search:hover{
+
+        #search .button-search:hover {
             cursor: pointer;
             background: black;
             color: white;
         }
-        #search p{
+
+        #search p {
             font-family: system-ui;
             font-weight: 600;
             font-size: 25px;
         }
-        #create{
+
+        #create {
             display: inline-block;
         }
-        #add a{
+
+        #add a {
             position: absolute;
             left: 55px;
             color: black;
@@ -113,13 +130,16 @@
             font-family: system-ui;
             margin-top: -15px;
         }
-        #add a:hover{
+
+        #add a:hover {
             color: #cccccc;
         }
+
         #add {
             display: inline-block;
         }
-        #create a{
+
+        #create a {
             position: absolute;
             right: 55px;
             color: black;
@@ -127,16 +147,19 @@
             font-family: system-ui;
             margin-top: -15px;
         }
-        #create a:hover{
+
+        #create a:hover {
             color: #cccccc;
         }
-        #nav-table{
+
+        #nav-table {
             position: relative;
             width: 100%;
             height: 15px;
             margin-top: -35px;
         }
-        #search{
+
+        #search {
             position: absolute;
             display: inline-block;
             position: absolute;
@@ -145,14 +168,16 @@
             top: 38px;
             height: 40px;
         }
-        #back{
+
+        #back {
             position: absolute;
             position: absolute;
             left: 4%;
             top: 50px;
             font-size: 25px;
         }
-        #input-search{
+
+        #input-search {
             padding: 10px 30px;
             border-radius: 30px;
             -moz-border-radius: 30px;
@@ -162,16 +187,19 @@
             color: black;
             cursor: pointer;
         }
-        .back-list{
+
+        .back-list {
             text-decoration: none;
             color: black;
             margin-left: 15px;
             font-family: system-ui;
         }
-        .back-list:hover{
+
+        .back-list:hover {
             color: #999999;
         }
-        #paging svg{
+
+        #paging svg {
             margin-bottom: -5px;
         }
     </style>
@@ -186,23 +214,24 @@
                         </tr>
                    `;
         }
+
         function getSearch() {
             let input_search = $("#input-search").val();
             $.ajax({
-                type :"GET",
-                data: {Search1 : input_search},
-                url:"/book/search",
-                success : function (data) {
-                   let content = `<tr>
+                type: "GET",
+                data: {Search1: input_search},
+                url: "/book/search",
+                success: function (data) {
+                    let content = `<tr>
                         <th>Id</th>
                         <th>Tên sách</th>
                         <th>Tác giả</th>
                         <th>Số lượng</th>
                         <th>Chủ đề</th>
                     </tr>`;
-                   for (let i = 0;i<data.length;i++){
-                       content += getData(data[i]);
-                   }
+                    for (let i = 0; i < data.length; i++) {
+                        content += getData(data[i]);
+                    }
                     document.getElementById("tableOne").innerHTML = content;
                 }
             })
@@ -245,13 +274,13 @@
                 </a>
             </li>
             <li>
-                <a  th:href="@{/control/home}">
+                <a th:href="@{/control/home}">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
                     <span class="tittle">Phòng điều khiển</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/notification/display}">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <span class="tittle">Thông báo</span>
                 </a>
@@ -288,71 +317,78 @@
         </div>
         <hr style="margin-top: 30px">
         <div style="padding-top: 20px;">
-        <center>
-            <h3 id="header-table">SÁCH</h3>
-        </center>
-        <div id="nav-table">
-            <div id="back">
-                <a class="back-list" th:href="@{/book/display}">
+            <center>
+                <h3 id="header-table">SÁCH</h3>
+            </center>
+            <div id="nav-table">
+                <div id="back">
+                    <a class="back-list" th:href="@{/book/display}">
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-backspace-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-backspace-fill" viewBox="0 0 16 16">
                              <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
                         </svg>
                     </span>
-                    <span>Back to list</span>
-                </a>
+                        <span>Back to list</span>
+                    </a>
+                </div>
+                <div id="search">
+                    <input type="text" id="input-search" placeholder="Search...">
+                    <input type="button" onclick="getSearch()" value="Search" class="button-search">
+                </div>
             </div>
-            <div id="search">
-                <input type="text" id="input-search" placeholder="Search...">
-                <input type="button" onclick="getSearch()" value="Search" class="button-search">
-            </div>
-        </div>
-        <div id="listCategory">
-            <center>
-                <table  id="tableOne">
-                    <tr>
-                        <th>Id</th>
-                        <th>Tên sách</th>
-                        <th>Tác giả</th>
-                        <th>Số lượng</th>
-                    </tr>
-                    <tr th:each="book :${listBook}">
-                        <td th:text="${book.book_id}"></td>
-                        <td th:text="${book.getName()}"></td>
-                        <td th:text="${book.getAuthor()}"></td>
-                        <td th:text="${book.getNumBook()}"></td>
-                    </tr>
-                </table>
-                <div id="paging">
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}"><span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+            <div id="listCategory">
+                <center>
+                    <table id="tableOne">
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sách</th>
+                            <th>Tác giả</th>
+                            <th>Số lượng</th>
+                        </tr>
+                        <tr th:each="book :${listBook}">
+                            <td th:text="${book.book_id}"></td>
+                            <td th:text="${book.getName()}"></td>
+                            <td th:text="${book.getAuthor()}"></td>
+                            <td th:text="${book.getNumBook()}"></td>
+                        </tr>
+                    </table>
+                    <div id="paging">
+                        <a style="text-decoration: none"
+                           th:href="@{'/book/category/{id}'(page=${listBook.number - 1}, id=${id})}"
+                           th:if="${listBook.hasPrevious()}"><span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                        </svg>
                     </span>BACK</a>
-                    <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}">NEXT <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                        <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
+                        <a style="text-decoration: none"
+                           th:href="@{'/book/category/{id}'(page=${listBook.number + 1}, id=${id})}"
+                           th:if="${listBook.hasNext()}">NEXT <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
                              <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
                         </svg>
                     </span></a>
-                </div>
-            </center>
-        </div>
+                    </div>
+                </center>
+            </div>
             <br>
             <hr>
-        <div>
-            <div id="create" style="position: static">
-                <a th:href="@{/book/create}">THÊM SÁCH MỚI</a>
+            <div>
+                <div id="create" style="position: static">
+                    <a th:href="@{/book/create}">THÊM SÁCH MỚI</a>
+                </div>
+                <div id="add" style="position: static">
+                    <a th:href="@{/book/addBook}">THÊM SÁCH ĐÃ CÓ</a>
+                </div>
             </div>
-            <div id="add" style="position: static">
-                <a th:href="@{/book/addBook}">THÊM SÁCH ĐÃ CÓ</a>
-            </div>
-        </div>
         </div>
     </div>
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script  src="/javascript/homejs.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>

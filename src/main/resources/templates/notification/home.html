@@ -71,16 +71,30 @@
         }
 
         .navigation {
-            left: -35px;
+            left: 0px;
         }
 
         .content-notification {
-            height: 350px;
-            background-color: #c4cccc;
+            height: 400px;
+            margin-top: -65px;
         }
 
         .toast:not(.show) {
             display: block;
+        }
+        .notification{
+            background-color: #C3CDC0;
+            margin-top: 35px;
+            width: 40%;
+            margin-left: 15px;
+        }
+        .header-notifi{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .notification-content{
+            background-color: #C3CDC0;
+            margin-top: 35px;
         }
     </style>
 </head>
@@ -125,7 +139,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/notification/display}">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <span class="tittle">Thông báo</span>
                 </a>
@@ -167,19 +181,25 @@
             </CENTER>
             <div class="content-notification container">
                 <div class="row">
-                    <div class="col-8">
-                        <h3>Xem thông báo</h3>
+                    <div class="notification-content col-7">
+                        <h3 class="header-notifi">Xem thông báo</h3>
                     </div>
-                    <div class="col-4">
-                        <h3>Thông báo trong ngày</h3>
+                    <div class="notification col-5">
+                        <h3 class="header-notifi">Thông báo trong ngày</h3>
                         <br>
-                        <div th:each="notification :${list}">
-                            <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div th:each="element: ${list}">
+                            <div class="toast align-items-center text-white bg-primary border-0" role="alert"
+                                 aria-live="assertive" aria-atomic="true">
                                 <div class="d-flex">
                                     <div class="toast-body">
-                                        <span style="color: yellow" th:text="${notification.student.getName()}"></span><span style="color: yellow"> hết hạn mượn sách!!</span>
+                                        <span style="color: yellow"
+                                              th:text="${element.bookStudent.student.getName()}"></span><span
+                                            style="color: yellow"> hết hạn mượn sách!!</span>
                                     </div>
-                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    <a th:href="${element.getId()}">
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                            data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </a>
                                 </div>
                             </div>
                             <br>

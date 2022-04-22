@@ -39,4 +39,9 @@ public class BookStudentService implements IBookStudentService {
     public Page<BookStudent> findAll(Pageable pageable) {
        return iBookStudentRepository.findAll(pageable);
     }
+
+    @Override
+    public List<Integer> findByDate(String text) {
+        return iBookStudentRepository.findIdByDate(text);
+    }
 }

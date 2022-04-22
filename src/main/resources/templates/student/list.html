@@ -30,55 +30,67 @@
         }
 
         /* Rounded sliders */
-        .content-header{
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
         }
+
         .table-control td, th {
-            border: 10px solid black;border: 10px solid black;
+            border: 10px solid black;
+            border: 10px solid black;
         }
+
         th, td {
             border-collapse: collapse;
             border: 1px solid black;
         }
+
         .table-control span {
             font-size: 25px;
             color: #000000;
             font-family: Arial;
         }
-        #listCategory{
+
+        #listCategory {
             padding-top: 20px;
         }
-        #tableOne{
+
+        #tableOne {
             margin-top: 55px;
             width: 90%;
         }
-        #tableOne tr{
+
+        #tableOne tr {
             height: 40px;
             font-size: 20px;
             font-family: system-ui;
         }
-        #tableOne th, td{
+
+        #tableOne th, td {
             text-align: left;
             padding: 8px;
             border: 0px solid white;
             border-collapse: collapse;
         }
-        #tableOne tr:nth-child(even){
+
+        #tableOne tr:nth-child(even) {
             background-color: #c4cccc;
         }
-        #tableOne th{
+
+        #tableOne th {
             background-color: #000000;
             color: white;
         }
-        #header-table{
+
+        #header-table {
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
             padding-top: 15px;
         }
-        #input-search{
+
+        #input-search {
             padding: 10px 30px;
             border-radius: 30px;
             -moz-border-radius: 30px;
@@ -88,24 +100,28 @@
             color: black;
             cursor: pointer;
         }
-        #search{
+
+        #search {
             position: relative;
             display: inline-block;
             top: 38px;
             left: 26%;
             height: 40px;
         }
-        #search p{
+
+        #search p {
             font-family: system-ui;
             font-weight: 600;
             font-size: 25px;
         }
-        #search input{
+
+        #search input {
             border: 1px unset;
             height: 100%;
             font-size: 20px;
         }
-        #search .button-search{
+
+        #search .button-search {
             border-radius: 30px;
             -moz-border-radius: 30px;
             -webkit-border-radius: 30px;
@@ -114,7 +130,8 @@
             height: 100%;
             background-color: #cccccc;
         }
-        #search .button-search:hover{
+
+        #search .button-search:hover {
             cursor: pointer;
             background: black;
             color: white;
@@ -122,22 +139,23 @@
     </style>
     <script type="text/javascript">
         function getData(listStudent) {
-            return `<tr>`+
-                        `<td>${listStudent.student_id}</td>`+
-                        `<td>${listStudent.name}</td>`+
-                        `<td>${listStudent.mssv}</td>`+
-                        `<td>${listStudent.className}</td>`+
-                        `<td>${listStudent.email}</td>`+
-                        `<td><a href="/book/show/${listStudent.student_id}">Xem sách</a></td>`+
-                        `<td><a href="/book/getBook/${listStudent.student_id}">Mượn sách</a></td>`+
-                    `</tr>`;
+            return `<tr>` +
+                `<td>${listStudent.student_id}</td>` +
+                `<td>${listStudent.name}</td>` +
+                `<td>${listStudent.mssv}</td>` +
+                `<td>${listStudent.className}</td>` +
+                `<td>${listStudent.email}</td>` +
+                `<td><a href="/book/show/${listStudent.student_id}">Xem sách</a></td>` +
+                `<td><a href="/book/getBook/${listStudent.student_id}">Mượn sách</a></td>` +
+                `</tr>`;
         }
+
         function getSearch() {
             let name = $("#input-search").val();
             $.ajax({
-                type:"GET",
+                type: "GET",
                 data: {Name: name},
-                url:"/student/search",
+                url: "/student/search",
                 success: function (data) {
                     let content = `<tr>
                         <th>Id</th>
@@ -148,7 +166,7 @@
                         <th>Xem sách</th>
                         <th>Mượn sách</th>
                     </tr>`;
-                    for (let i=0;i<data.length;i++){
+                    for (let i = 0; i < data.length; i++) {
                         content += getData(data[i]);
                     }
                     document.getElementById("tableOne").innerHTML = content;
@@ -193,13 +211,13 @@
                 </a>
             </li>
             <li>
-                <a  th:href="@{/control/home}">
+                <a th:href="@{/control/home}">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
                     <span class="tittle">Phòng điều khiển</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/notification/display}">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <span class="tittle">Thông báo</span>
                 </a>
@@ -243,7 +261,7 @@
                     <input type="text" id="input-search" placeholder="Search...">
                     <input type="button" onclick="getSearch()" value="Search" class="button-search">
                 </div>
-                <table  id="tableOne">
+                <table id="tableOne">
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -268,9 +286,11 @@
                     </tbody>
                 </table>
                 <div>
-                    <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number - 1})}" th:if="${listStudent.hasPrevious()}"><span>Back</span></a>
+                    <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number - 1})}"
+                       th:if="${listStudent.hasPrevious()}"><span>Back</span></a>
                     <span th:text="${listStudent.number + 1}"></span>/<span th:text="${listStudent.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number + 1})}" th:if="${listStudent.hasNext()}"><span>Next</span></a>
+                    <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number + 1})}"
+                       th:if="${listStudent.hasNext()}"><span>Next</span></a>
                 </div>
             </center>
         </div>
@@ -278,6 +298,6 @@
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script  src="/javascript/homejs.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>

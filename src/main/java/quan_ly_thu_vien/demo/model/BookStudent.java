@@ -36,6 +36,9 @@ public class BookStudent {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    @OneToOne(mappedBy = "bookStudent")
+    private Notification notification;
+
     public BookStudent(Integer idBookStudent, String dateStart, String dateEnd, Student student, Book book) {
         this.idBookStudent = idBookStudent;
         this.dateStart = dateStart;

@@ -30,14 +30,15 @@ public class BookControllerRest {
     private IBookStudentService iBookStudentService;
     @Autowired
     private IStudentService iStudentService;
+
     @GetMapping("/search")
-    public ResponseEntity<List<Book>> searchByName(String Search1){
+    public ResponseEntity<List<Book>> searchByName(String Search1) {
         List<Book> listBook = iBookService.search1(Search1);
         return new ResponseEntity<>(listBook, HttpStatus.OK);
     }
 
     @GetMapping("/show/{id}")
-    public ModelAndView showBook(@PageableDefault(size = 7)Pageable pageable,@PathVariable Integer id, ModelMap modelMap){
+    public ModelAndView showBook(@PageableDefault(size = 7) Pageable pageable, @PathVariable Integer id, ModelMap modelMap) {
         Page<BookStudent> list = iBookStudentService.findAllById(id, pageable);
         String name = iStudentService.getNameStudent(id);
         modelMap.addAttribute("name", name);

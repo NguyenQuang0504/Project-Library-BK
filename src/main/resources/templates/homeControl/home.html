@@ -12,14 +12,14 @@
         function display() {
             let status1 = '';
             let status2 = '';
-            let status_lamp1 ='';
-            let status_fan1= '';
+            let status_lamp1 = '';
+            let status_fan1 = '';
             $(document).ready(function () {
-                function displayData(data){
-                    status_lamp1 = data[3].status ===1 ? 'value = "1" ': 'value = "0"';
-                    status_fan1 = data[4].status ===1 ? 'value = "1" ': 'value = "0"';
-                   status1 = data[3].status === 1 ? 'checked':'';
-                    status2 = data[4].status === 1 ? 'checked':'';
+                function displayData(data) {
+                    status_lamp1 = data[3].status === 1 ? 'value = "1" ' : 'value = "0"';
+                    status_fan1 = data[4].status === 1 ? 'value = "1" ' : 'value = "0"';
+                    status1 = data[3].status === 1 ? 'checked' : '';
+                    status2 = data[4].status === 1 ? 'checked' : '';
 
                     return `
                             <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span >${data[0].status}</span></span>
@@ -43,8 +43,8 @@
                                             <th>
                                                <span>OFF</span>
                                                 <label class="switch">
-                                                    <input type="hidden" id="status-lamp1"`+ status_lamp1 +`>
-                                                    <input id="control-lamp1" type="checkbox"`+ status1+ `>
+                                                    <input type="hidden" id="status-lamp1"` + status_lamp1 + `>
+                                                    <input id="control-lamp1" type="checkbox"` + status1 + `>
                                                     <span class="slider round"></span>
                                                 </label>
                                                 <span>ON</span>
@@ -52,8 +52,8 @@
                                             <th>
                                                 <span>OFF</span>
                                                 <label class="switch">
-                                                <input type="hidden" id="status-fan1"`+ status_fan1 +`>
-                                                    <input id="control-fan1" type="checkbox"`+ status2+`>
+                                                <input type="hidden" id="status-fan1"` + status_fan1 + `>
+                                                    <input id="control-fan1" type="checkbox"` + status2 + `>
                                                     <span class="slider round"></span>
                                                 </label>
                                                 <span>ON</span>
@@ -64,6 +64,7 @@
                         </td>
                         <td>`
                 }
+
                 $.ajax({
                     type: "GET",
                     url: "/home/getListEquipment",
@@ -75,35 +76,36 @@
                 event.preventDefault();
             })
         }
+
         display();
-        setInterval(function(){
+        setInterval(function () {
             display()
         }, 2000);
 
-//Dieu khien den 1
+        //Dieu khien den 1
         $(document).ready(function () {
-            $(document).on("click","#control-lamp1", function (event) {
+            $(document).on("click", "#control-lamp1", function (event) {
                 let status = $("#status-lamp1").val();
                 $.ajax({
                     type: "GET",
                     url: "/control/lamp1",
-                    data: {Status : status},
+                    data: {Status: status},
                 })
             })
         })
-//Dieu khien quat 1
+        //Dieu khien quat 1
         $(document).ready(function () {
-            $(document).on("click","#control-fan1", function (event) {
+            $(document).on("click", "#control-fan1", function (event) {
                 let status = $("#status-fan1").val();
                 $.ajax({
                     type: "GET",
                     url: "/control/fan1",
-                    data: {Status : status},
+                    data: {Status: status},
                 })
             })
         })
     </script>
-<!--    CSS home control-->
+    <!--    CSS home control-->
     <style>
         .switch {
             position: relative;
@@ -164,38 +166,47 @@
         .slider.round:before {
             border-radius: 50%;
         }
-        .content-header{
+
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
         }
-        .table-control{
+
+        .table-control {
             width: 90%;
             border-collapse: collapse;
             border: 10px solid black;
             margin-top: 80px;
         }
+
         .table-control td, th {
-            border: 10px solid black;border: 10px solid black;
+            border: 10px solid black;
+            border: 10px solid black;
         }
+
         th, td {
             border-collapse: collapse;
             border: 1px solid black;
         }
+
         .table-control span {
             font-size: 25px;
             color: #000000;
             font-family: Arial;
         }
-        #tr-control{
+
+        #tr-control {
             height: 50px;
             background-color: #cccccc;
         }
-        #tr-control h3{
+
+        #tr-control h3 {
             font-size: 30px;
             font-family: system-ui;
         }
-        #header-table{
+
+        #header-table {
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
@@ -204,87 +215,87 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
-                        <span class="tittle">Library BK</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/home/display}">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="tittle">Trang chủ</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/student/home}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="tittle">Sinh viên</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="tittle">Giảng viên</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/book/display}">
-                        <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
-                        <span class="tittle">Sách</span>
-                    </a>
-                </li>
-                <li>
-                    <a  th:href="@{/control/home}">
-                        <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
-                        <span class="tittle">Phòng điều khiển</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                        <span class="tittle">Thông báo</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
-                        <span class="tittle">Đăng xuất</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
+                    <span class="tittle">Library BK</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/home/display}">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="tittle">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/student/home}">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Sinh viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Giảng viên</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/display}">
+                    <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="tittle">Sách</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/control/home}">
+                    <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
+                    <span class="tittle">Phòng điều khiển</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/notification/display}">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <span class="tittle">Thông báo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="tittle">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-        <!--Thong tin-->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-               <div>
+    <!--Thong tin-->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div>
                    <span><img style=" position: absolute;
                                 width: 70px;
                                 left: 200px;
                                 top: 5px;"
                               src="/image/Logodhbk.jpg" alt=""></span>
-               </div>
-                <div class="content-header">
-                    <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
-                    <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
-                </div>
-                <div class="user">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                </div>
             </div>
-            <hr style="margin-top: 30px">
+            <div class="content-header">
+                <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
+                <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="user">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <hr style="margin-top: 30px">
+        <center>
+            <h3 id="header-table">PHÒNG GIÁM SÁT, ĐIỀU KHIỂN</h3>
+        </center>
+        <div>
             <center>
-                <h3 id="header-table">PHÒNG GIÁM SÁT, ĐIỀU KHIỂN</h3>
-            </center>
-            <div>
-                <center>
                 <table class="table-control">
                     <tr id="tr-control">
                         <th><h3>Phòng 1</h3></th>
@@ -293,62 +304,76 @@
                     <tr>
                         <td>
                             <div style="left: 25px;" id="control-1">
-                                    <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span th:each="element :${listEquipment}" th:if="${element.getId()==1}" th:text="${element.getStatus()}" ></span></span>
-                                    <br>
-                                    <span><ion-icon name="water"></ion-icon> Độ ẩm: <span th:each="element :${listEquipment}" th:if="${element.getId()==2}" th:text="${element.getStatus()}"></span></span>
-                                    <br>
-                                    <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span th:each="element :${listEquipment}" th:if="${element.getId()==3}" th:text="${element.getStatus()}"></span></span>
-                                    <br>
-                                    <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}" th:if="${element.getId()==4}" th:text="${element.getStatus()}"></span> </span>
-                                    <br>
-                                    <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}" th:if="${element.getId()==5}" th:text="${element.getStatus()}"></span></span>
-                                    <br>
-                                    <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
-                                    <hr>
-                                    <table style="width: 100%">
-                                        <tr>
-                                            <th>
+                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==1}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==2}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==3}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}"
+                                                                                   th:if="${element.getId()==4}"
+                                                                                   th:text="${element.getStatus()}"></span> </span>
+                                <br>
+                                <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}"
+                                                                                   th:if="${element.getId()==5}"
+                                                                                   th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+                                <hr>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>
                                                 <span>
                                                     ĐÈN
                                                 </span>
-                                            </th>
-                                            <th>
+                                        </th>
+                                        <th>
                                                 <span>
                                                     QUẠT
                                                 </span>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                               <span>OFF</span>
-                                                <label class="switch">
-                                                    <input type="hidden" id="status-lamp1" th:value="${listEquipment[3].status}">
-                                                    <input type="checkbox" th:checked="${listEquipment[3].status}" id="control-lamp1">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                <span>ON</span>
-                                            </th>
-                                            <th>
-                                                <span>OFF</span>
-                                                <label class="switch">
-                                                    <input type="hidden" id="status-fan1" th:value="${listEquipment[4].status}">
-                                                    <input type="checkbox" th:checked="${listEquipment[4].status}" id="control-fan1">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                <span>ON</span>
-                                            </th>
-                                        </tr>
-                                    </table>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                <input type="hidden" id="status-lamp1"
+                                                       th:value="${listEquipment[3].status}">
+                                                <input type="checkbox" th:checked="${listEquipment[3].status}"
+                                                       id="control-lamp1">
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <span>ON</span>
+                                        </th>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                <input type="hidden" id="status-fan1"
+                                                       th:value="${listEquipment[4].status}">
+                                                <input type="checkbox" th:checked="${listEquipment[4].status}"
+                                                       id="control-fan1">
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <span>ON</span>
+                                        </th>
+                                    </tr>
+                                </table>
                             </div>
                         </td>
                         <td>
                             <div style="right: 25px;" class="control-2">
-                                    <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p ></p></span>
-                                    <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
-                                    <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
-                                    <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
-                                    <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
-                                    <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p></p></span>
+                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
+                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
+                                <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
+                                <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
+                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
                                 <hr>
                                 <table style="width: 100%">
                                     <tr>
@@ -382,12 +407,12 @@
                         </td>
                     </tr>
                 </table>
-                </center>
-            </div>
+            </center>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script  src="/javascript/homejs.js"></script>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>

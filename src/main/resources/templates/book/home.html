@@ -29,55 +29,67 @@
         }
 
         /* Rounded sliders */
-        .content-header{
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
         }
+
         .table-control td, th {
-            border: 10px solid black;border: 10px solid black;
+            border: 10px solid black;
+            border: 10px solid black;
         }
+
         th, td {
             border-collapse: collapse;
             border: 1px solid black;
         }
+
         .table-control span {
             font-size: 25px;
             color: #000000;
             font-family: Arial;
         }
-        #listCategory{
+
+        #listCategory {
             padding-top: 20px;
         }
-        #tableOne{
+
+        #tableOne {
             margin-top: 55px;
             width: 90%;
         }
-        #tableOne tr{
+
+        #tableOne tr {
             height: 40px;
             font-size: 20px;
             font-family: system-ui;
         }
-        #tableOne th, td{
+
+        #tableOne th, td {
             text-align: left;
             padding: 8px;
             border: 0px solid white;
             border-collapse: collapse;
         }
-        #tableOne tr:nth-child(even){
+
+        #tableOne tr:nth-child(even) {
             background-color: #c4cccc;
         }
-        #tableOne th{
+
+        #tableOne th {
             background-color: #000000;
             color: white;
         }
-        #header-table{
+
+        #header-table {
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
             padding-top: 15px;
         }
-        #paging svg{
+
+        #paging svg {
             margin-bottom: -5px;
         }
     </style>
@@ -117,13 +129,13 @@
                 </a>
             </li>
             <li>
-                <a  th:href="@{/control/home}">
+                <a th:href="@{/control/home}">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
                     <span class="tittle">Phòng điều khiển</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/notification/display}">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <span class="tittle">Thông báo</span>
                 </a>
@@ -161,9 +173,9 @@
         <hr style="margin-top: 30px">
         <div id="listCategory">
             <h2 style="color: #287bff; margin-left: 20px" th:text="${mess}"></h2>
-        <center>
-            <h3 id="header-table">THỂ LOẠI SÁCH</h3>
-                <table  id="tableOne">
+            <center>
+                <h3 id="header-table">THỂ LOẠI SÁCH</h3>
+                <table id="tableOne">
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -183,25 +195,30 @@
                     </tr>
                     </tbody>
                 </table>
-            <div id="paging">
-                <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number - 1})}" th:if="${listCategory.hasPrevious()}"><span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                <div id="paging">
+                    <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number - 1})}"
+                       th:if="${listCategory.hasPrevious()}"><span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                        </svg>
                     </span>BACK</a>
-                <span th:text="${listCategory.number + 1}"></span>/<span th:text="${listCategory.totalPages}"></span>
-                <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number + 1})}" th:if="${listCategory.hasNext()}">NEXT <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                    <span th:text="${listCategory.number + 1}"></span>/<span
+                        th:text="${listCategory.totalPages}"></span>
+                    <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number + 1})}"
+                       th:if="${listCategory.hasNext()}">NEXT <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
                              <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
                         </svg>
                 </span></a>
-            </div>
-        </center>
+                </div>
+            </center>
         </div>
     </div>
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script  src="/javascript/homejs.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>

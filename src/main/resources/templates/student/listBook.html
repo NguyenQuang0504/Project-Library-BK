@@ -33,62 +33,74 @@
         }
 
         /* Rounded sliders */
-        .content-header{
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
         }
+
         .table-control td, th {
-            border: 10px solid black;border: 10px solid black;
+            border: 10px solid black;
+            border: 10px solid black;
         }
+
         th, td {
             border-collapse: collapse;
             border: 1px solid black;
         }
+
         .table-control span {
             font-size: 25px;
             color: #000000;
             font-family: Arial;
         }
-        #listCategory{
+
+        #listCategory {
             padding-top: 20px;
         }
-        #tableOne{
+
+        #tableOne {
             margin-top: 55px;
             width: 90%;
         }
-        #tableOne tr{
+
+        #tableOne tr {
             height: 40px;
             font-size: 20px;
             font-family: system-ui;
         }
-        #tableOne th, td{
+
+        #tableOne th, td {
             text-align: left;
             padding: 8px;
             border: 0px solid white;
             border-collapse: collapse;
         }
-        #tableOne tr:nth-child(even){
+
+        #tableOne tr:nth-child(even) {
             background-color: #c4cccc;
         }
-        #tableOne th{
+
+        #tableOne th {
             background-color: #000000;
             color: white;
         }
-        #header-table{
+
+        #header-table {
             font-size: 25px;
             font-family: system-ui;
             font-weight: 600;
             padding-top: 15px;
         }
-    #name-student{
-        position: absolute;
-        /* padding: 27px; */
-        padding-left: 5%;
-        font-size: 25px;
-        padding-top: 20px;
-        font-family: system-ui;
-    }
+
+        #name-student {
+            position: absolute;
+            /* padding: 27px; */
+            padding-left: 5%;
+            font-size: 25px;
+            padding-top: 20px;
+            font-family: system-ui;
+        }
     </style>
     <script>
     </script>
@@ -128,13 +140,13 @@
                 </a>
             </li>
             <li>
-                <a  th:href="@{/control/home}">
+                <a th:href="@{/control/home}">
                     <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
                     <span class="tittle">Phòng điều khiển</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/notification/display}">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <span class="tittle">Thông báo</span>
                 </a>
@@ -174,9 +186,9 @@
             <center>
                 <h3 id="header-table">SÁCH ĐÃ MƯỢN</h3>
                 <div id="name-student">
-                <span>Sinh viên:</span><span th:text="${name}"></span>
+                    <span>Sinh viên:</span><span th:text="${name}"></span>
                 </div>
-                <table  id="tableOne">
+                <table id="tableOne">
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -194,14 +206,20 @@
                         <td th:text="${book.getBook().getAuthor()}"></td>
                         <td th:text="${book.getDateStart()}"></td>
                         <td th:text="${book.getDateEnd()}"></td>
-                        <td><a th:href="@{/book/return/{id}/{idBook}/{idStudent}(id=${book.idBookStudent}, idBook=${book.getBook().book_id}, idStudent=${book.student.student_id})}">Trả sách</a></td>
+                        <td>
+                            <a th:href="@{/book/return/{id}/{idBook}/{idStudent}(id=${book.idBookStudent}, idBook=${book.getBook().book_id}, idStudent=${book.student.student_id})}">Trả
+                                sách</a></td>
                     </tr>
                     </tbody>
                 </table>
                 <div>
-                    <a style="text-decoration: none" th:href="@{'/book/show/{id}'(page=${listBook.number - 1}, id=${id})}" th:if="${listBook.hasPrevious()}"><span>Back</span></a>
+                    <a style="text-decoration: none"
+                       th:href="@{'/book/show/{id}'(page=${listBook.number - 1}, id=${id})}"
+                       th:if="${listBook.hasPrevious()}"><span>Back</span></a>
                     <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/book/show/{id}'(page=${listBook.number + 1}, id=${id})}" th:if="${listBook.hasNext()}"><span>Next</span></a>
+                    <a style="text-decoration: none"
+                       th:href="@{'/book/show/{id}'(page=${listBook.number + 1}, id=${id})}"
+                       th:if="${listBook.hasNext()}"><span>Next</span></a>
                 </div>
             </center>
         </div>
@@ -209,6 +227,6 @@
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script  src="/javascript/homejs.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>

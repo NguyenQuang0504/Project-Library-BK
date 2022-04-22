@@ -1,4 +1,5 @@
 package quan_ly_thu_vien.demo.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,15 +37,16 @@ public class ControllerBook {
     private IStudentService iStudentService;
 
     @GetMapping("/create")
-    public String createBook(ModelMap modelMap){
+    public String createBook(ModelMap modelMap) {
         List<CategoryBook> categoryBookList = iCategoryBookService.findAll();
         modelMap.addAttribute("listCategory", categoryBookList);
         modelMap.addAttribute("listBook", new Book());
         return "book/create";
     }
+
     @PostMapping("/save")
-    public String save(@Validated @ModelAttribute(name = "listBook") Book listBook1, BindingResult bindingResult, ModelMap modelMap){
-        if (bindingResult.hasFieldErrors()){
+    public String save(@Validated @ModelAttribute(name = "listBook") Book listBook1, BindingResult bindingResult, ModelMap modelMap) {
+        if (bindingResult.hasFieldErrors()) {
             List<CategoryBook> categoryBookList = iCategoryBookService.findAll();
             modelMap.addAttribute("listCategory", categoryBookList);
             return "book/create";
@@ -52,21 +54,24 @@ public class ControllerBook {
         iBookService.save(listBook1);
         return "redirect:/book/display";
     }
+
     @GetMapping("/display")
-    public ModelAndView getListCategory(@PageableDefault(size = 7) Pageable pageable){
+    public ModelAndView getListCategory(@PageableDefault(size = 7) Pageable pageable) {
         Page<CategoryBook> list = iCategoryBookService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("book/home", "listCategory", list);
         return modelAndView;
     }
+
     @GetMapping("/category/{id}")
-    public ModelAndView getListBook(@PageableDefault(size = 7) Pageable pageable, @PathVariable Integer id, ModelMap modelMap){
+    public ModelAndView getListBook(@PageableDefault(size = 7) Pageable pageable, @PathVariable Integer id, ModelMap modelMap) {
         Page<Book> listBook = iBookService.findByIdCategory(id, pageable);
         modelMap.addAttribute("id", id);
-        ModelAndView modelAndView = new  ModelAndView("book/listBook", "listBook", listBook);
+        ModelAndView modelAndView = new ModelAndView("book/listBook", "listBook", listBook);
         return modelAndView;
     }
+
     @GetMapping("/getBook/{id}")
-    public ModelAndView getBook(@PathVariable Integer id, ModelMap modelMap){
+    public ModelAndView getBook(@PathVariable Integer id, ModelMap modelMap) {
         Student student = iStudentService.findById(id);
         modelMap.addAttribute("student1", student);
         List<Book> bookList = iBookService.findAllBook();
@@ -84,20 +89,23 @@ public class ControllerBook {
         BookStudent bookStudent = new BookStudent(text, text1);
         return new ModelAndView("student/getBook", "bookStudent", bookStudent);
     }
+
     @GetMapping("/return/{id}/{idBook}/{idStudent}")
-    public String returnBook(@PathVariable Integer id, @PathVariable Integer idBook, @PathVariable Integer idStudent){
+    public String returnBook(@PathVariable Integer id, @PathVariable Integer idBook, @PathVariable Integer idStudent) {
         iBookStudentService.delete(id);
         iBookService.returnBook(idBook);
-        return "redirect:/book/show/"+idStudent;
+        return "redirect:/book/show/" + idStudent;
     }
+
     @GetMapping("/addBook")
-    public String addBook(ModelMap modelMap){
+    public String addBook(ModelMap modelMap) {
         List<Book> listBook = iBookService.findAll();
         modelMap.addAttribute("listBook", listBook);
         return "book/addBook";
     }
+
     @PostMapping("/add")
-    public String add(@RequestParam Integer numBook, @RequestParam Integer book){
+    public String add(@RequestParam Integer numBook, @RequestParam Integer book) {
         iBookService.addBook(book, numBook);
         return "redirect:/book/display";
     }

@@ -9,7 +9,7 @@
         // function cap nhat nhiet do va thong so len web
         function display() {
             $(document).ready(function () {
-                function displayData(data){
+                function displayData(data) {
                     return `<h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
                             </svg> Phòng 1</h3>
@@ -25,19 +25,21 @@
                             <br>
                             <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>`
                 }
+
                 $.ajax({
                     type: "GET",
                     url: "/home/getListEquipment",
                     success: function (data) {
-                      let htmlDisplayHome = displayData(data);
+                        let htmlDisplayHome = displayData(data);
                         document.getElementById("center1").innerHTML = htmlDisplayHome;
                     }
                 });
                 event.preventDefault();
             })
         }
+
         display(); // This will run on page load
-        setInterval(function(){
+        setInterval(function () {
             display() // this will run after every 5 seconds
         }, 5000);
     </script>
@@ -45,15 +47,17 @@
     <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
     <title>Document</title>
     <style>
-        .content-header{
+        .content-header {
             position: absolute;
             left: 275px;
             top: 15px;
 
         }
-        .card{
+
+        .card {
             text-decoration: none;
         }
+
         .main .control-1, .control-2 {
             display: inline-block;
             width: 45%;
@@ -69,27 +73,32 @@
             color: black;
             cursor: pointer;
         }
-        .main .control-1 span{
+
+        .main .control-1 span {
             font-size: 25px;
             color: #999999;
             font-family: Arial;
         }
-        .main .control-2 span{
+
+        .main .control-2 span {
             font-size: 25px;
             color: #999999;
             font-family: Arial;
         }
-        .main .control-2 h3{
+
+        .main .control-2 h3 {
             font-size: 30px;
             color: #000000;
             font-family: Arial;
         }
-        .main .control-1 h3{
+
+        .main .control-1 h3 {
             font-size: 30px;
             color: #000000;
             font-family: Arial;
         }
-        .main .control{
+
+        .main .control {
             margin-top: 30px;
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
             border-radius: 20px;
@@ -99,180 +108,199 @@
             position: absolute;
             width: 95%;
         }
-        #center1, #center2{
+
+        #center1, #center2 {
             padding-top: 35px;
             padding-left: 70px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
-                        <span class="tittle">Library BK</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/home/display}">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="tittle">Trang chủ</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/student/home}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="tittle">Sinh viên</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="tittle">Giảng viên</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/book/display}">
-                        <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
-                        <span class="tittle">Sách</span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/control/home}">
-                        <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
-                        <span class="tittle">Phòng điều khiển</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                        <span class="tittle">Thông báo</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
-                        <span class="tittle">Đăng xuất</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
+                    <span class="tittle">Library BK</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/home/display}">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="tittle">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/student/home}">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Sinh viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Giảng viên</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/display}">
+                    <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="tittle">Sách</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/control/home}">
+                    <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
+                    <span class="tittle">Phòng điều khiển</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/notification/display}">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <span class="tittle">Thông báo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="tittle">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-        <!--Thong tin-->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-               <div>
+    <!--Thong tin-->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div>
                    <span><img style=" position: absolute;
                                 width: 70px;
                                 left: 200px;
                                 top: 5px;"
                               src="/image/Logodhbk.jpg" alt=""></span>
-               </div>
-                <div class="content-header">
-                    <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
-                    <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="content-header">
+                <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
+                <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="user">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </div>
+
+        <!--phan chinh thong tin-->
+        <div style="  grid-template-columns: repeat(5,1fr);" class="cardBox">
+            <a th:href="@{/student/home}" class="card">
+                <div>
+                    <div class="numbers" th:text="${sizeStudent}"></div>
+                    <div class="cardName">Sinh viên</div>
                 </div>
-                <div class="user">
-                    <ion-icon name="person-circle-outline"></ion-icon>
+                <div class="iconBox">
+                    <ion-icon name="people-outline"></ion-icon>
+                </div>
+            </a>
+
+            <div class="card">
+                <div>
+                    <div class="numbers">4</div>
+                    <div class="cardName">Giảng viên</div>
+                </div>
+                <div class="iconBox">
+                    <ion-icon name="people-outline"></ion-icon>
                 </div>
             </div>
 
-            <!--phan chinh thong tin-->
-            <div style="  grid-template-columns: repeat(5,1fr);" class="cardBox">
-                <a th:href="@{/student/home}" class="card">
-                    <div>
-                        <div class="numbers" th:text="${sizeStudent}"></div>
-                        <div class="cardName">Sinh viên</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </div>
-                </a>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">4</div>
-                        <div class="cardName">Giảng viên</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </div>
+            <a class="card" th:href="@{/book/display}">
+                <div>
+                    <div class="numbers" th:text="${size}"></div>
+                    <div class="cardName">Sách</div>
                 </div>
+                <div class="iconBox">
+                    <ion-icon name="reader-outline"></ion-icon>
+                </div>
+            </a>
 
-                <a class="card" th:href="@{/book/display}">
-                    <div>
-                        <div class="numbers" th:text="${size}"></div>
-                        <div class="cardName">Sách</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="reader-outline"></ion-icon>
-                    </div>
-                </a>
-
-                <a class="card" th:href="@{/control/home}">
-                    <div>
-                        <div class="numbers">2</div>
-                        <div class="cardName">Phòng điều khiển</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="speedometer"></ion-icon>
-                    </div>
-                </a>
-                <div class="card">
-                    <div>
-                        <div class="numbers">2</div>
-                        <div class="cardName">Thông báo</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="mail"></ion-icon>
-                    </div>
+            <a class="card" th:href="@{/control/home}">
+                <div>
+                    <div class="numbers">2</div>
+                    <div class="cardName">Phòng điều khiển</div>
+                </div>
+                <div class="iconBox">
+                    <ion-icon name="speedometer"></ion-icon>
+                </div>
+            </a >
+            <div class="card" th:href="@{/notification/display}">
+                <div>
+                    <div class="numbers">2</div>
+                    <div class="cardName">Thông báo</div>
+                </div>
+                <div class="iconBox">
+                    <ion-icon name="mail"></ion-icon>
                 </div>
             </div>
-            <div>
-                <div class="control">
-                    <div style="left: 25px;" class="control-1">
-                        <div id="center1">
-                            <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+        </div>
+        <div>
+            <div class="control">
+                <div style="left: 25px;" class="control-1">
+                    <div id="center1">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-house-door" viewBox="0 0 16 16">
                                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                            </svg> Phòng 1</h3>
-                            <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span th:each="element :${listEquipment}" th:if="${element.getId()==1}" th:text="${element.getStatus()}" ></span></span>
-                            <br>
-                            <span><ion-icon name="water"></ion-icon> Độ ẩm: <span th:each="element :${listEquipment}" th:if="${element.getId()==2}" th:text="${element.getStatus()}"></span></span>
-                            <br>
-                            <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span th:each="element :${listEquipment}" th:if="${element.getId()==3}" th:text="${element.getStatus()}"></span></span>
-                            <br>
-                            <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}" th:if="${element.getId()==4}" th:text="${element.getStatus()}"></span> </span>
-                            <br>
-                            <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}" th:if="${element.getId()==5}" th:text="${element.getStatus()}"></span></span>
-                            <br>
-                            <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
-                        </div>
+                            </svg>
+                            Phòng 1
+                        </h3>
+                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span
+                                th:each="element :${listEquipment}" th:if="${element.getId()==1}"
+                                th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <span th:each="element :${listEquipment}"
+                                                                              th:if="${element.getId()==2}"
+                                                                              th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span th:each="element :${listEquipment}"
+                                                                                  th:if="${element.getId()==3}"
+                                                                                  th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}"
+                                                                           th:if="${element.getId()==4}"
+                                                                           th:text="${element.getStatus()}"></span> </span>
+                        <br>
+                        <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}"
+                                                                           th:if="${element.getId()==5}"
+                                                                           th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
                     </div>
-                    <div style="right: 25px;" class="control-2">
-                        <div id="center2">
-                            <h3> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                </div>
+                <div style="right: 25px;" class="control-2">
+                    <div id="center2">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-house-door" viewBox="0 0 16 16">
                                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                            </svg> Phòng 2</h3>
-                            <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p ></p></span>
-                            <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
-                            <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
-                            <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
-                            <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
-                            <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
-                        </div>
-                    </div>
+                            </svg>
+                            Phòng 2
+                        </h3>
+                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p></p></span>
+                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
+                        <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
+                        <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
+                        <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script  src="/javascript/homejs.js"></script>
+</div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/javascript/homejs.js"></script>
 </body>
 </html>
