@@ -60,4 +60,16 @@ public class StudentController {
         modelMap.addAttribute("list", listStudent);
         return "student/warning";
     }
+    @GetMapping("/detail/{id}")
+    public String viewDetail(@PageableDefault(size = 7)Pageable pageable, @PathVariable Integer id , ModelMap modelMap){
+        LocalDate dateStart = LocalDate.now();
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String text = dateStart.format(formatters);
+        Page<BookStudent> listBook = iBookStudentService.findByIdStudent(text, id, pageable);
+        String studentName = iBookStudentService.findStudent(id);
+        modelMap.addAttribute("nameStudent", studentName);
+       modelMap.addAttribute("listBook", listBook);
+       modelMap.addAttribute("id", id);
+       return "student/detail";
+    }
 }

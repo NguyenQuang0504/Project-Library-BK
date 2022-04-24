@@ -18,6 +18,11 @@ public interface IBookStudentRepository extends JpaRepository<BookStudent, Integ
     String findName(Integer id);
     @Query(value = "select idBookStudent from bookstudent where dateEnd >= ?1", nativeQuery = true)
     List<Integer> findIdByDate(String text);
-    @Query(value = "select * from bookstudent where dateEnd >= ?1", nativeQuery = true)
+    @Query(value = "select * from bookstudent where dateEnd >= ?1 group by student_id", nativeQuery = true)
     Page<BookStudent> findWarning(String text, Pageable pageable);
+
+    @Query(value = "select * from bookstudent where dateEnd >= ?1 and student_id=?2", nativeQuery = true)
+    Page<BookStudent> findByIdStudent(String text,Integer id, Pageable pageable);
+    @Query(value = "select name from bookstudent inner join student on bookstudent.student_id = ?1 = student.student_id group by student.student_id;", nativeQuery = true)
+    String findStudent(Integer id);
 }

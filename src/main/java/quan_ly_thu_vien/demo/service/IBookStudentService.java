@@ -21,4 +21,8 @@ public interface IBookStudentService {
     List<Integer> findByDate(String text);
 
     Page<BookStudent> findWarning(String text, Pageable pageable);
+
+    Page<BookStudent> findByIdStudent(String text, Integer id, Pageable pageable);
+
+    String findStudent(Integer id);
 }

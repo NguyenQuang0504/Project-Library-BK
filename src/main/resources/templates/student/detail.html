@@ -171,32 +171,31 @@
         <div id="listCategory">
             <center>
                 <h3 id="header-table">DANH SÁCH SINH VIÊN QUÁ HẠN TRẢ SÁCH</h3>
+                <h2 style="color: red; padding-top: 10px">Sinh viên: <span style="color: red" th:text="${nameStudent}"></span></h2>
                 <table id="tableOne">
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Tên</th>
-                        <th>MSSV</th>
-                        <th>Lớp</th>
-                        <th>Chi tiết</th>
+                        <th>Tên Sách</th>
+                        <th>Tác giả</th>
+                        <th>Ngày mượn</th>
+                        <th>Ngày phải trả</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="element :${list}">
-                        <td th:text="${element.student.getStudent_id()}"></td>
-                        <td th:text="${element.student.getName()}"></td>
-                        <td th:text="${element.student.getMssv()}"></td>
-                        <td th:text="${element.student.getClassName()}"></td>
-                        <td><a th:href="@{/student/detail/{id}(id=${element.student.getStudent_id()})}">Xem chi tiết</a></td>
+                    <tr th:each="element :${listBook}">
+                        <td th:text="${element.book.getName()}"></td>
+                        <td th:text="${element.book.getAuthor()}"></td>
+                        <td th:text="${element.getDateStart()}"></td>
+                        <td th:text="${element.getDateEnd()}"></td>
                     </tr>
                     </tbody>
                 </table>
                 <div>
-                    <a style="text-decoration: none" th:href="@{'/student/listWarning'(page=${list.number - 1})}"
-                       th:if="${list.hasPrevious()}"><span>Back</span></a>
-                    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/student/listWarning'(page=${list.number + 1})}"
-                       th:if="${list.hasNext()}"><span>Next</span></a>
+                    <a style="text-decoration: none" th:href="@{'/student/detail/{id}'(page=${listBook.number - 1}, id=${id})}"
+                       th:if="${listBook.hasPrevious()}"><span>Back</span></a>
+                    <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
+                    <a style="text-decoration: none" th:href="@{'/student/detail/{id}'(page=${listBook.number + 1}, id=${id})}"
+                       th:if="${listBook.hasNext()}"><span>Next</span></a>
                 </div>
             </center>
         </div>

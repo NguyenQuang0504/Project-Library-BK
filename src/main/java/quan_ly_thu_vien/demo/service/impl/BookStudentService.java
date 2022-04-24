@@ -50,4 +50,14 @@ public class BookStudentService implements IBookStudentService {
     public Page<BookStudent> findWarning(String text, Pageable pageable) {
         return iBookStudentRepository.findWarning(text, pageable);
     }
+
+    @Override
+    public Page<BookStudent> findByIdStudent(String text,Integer id, Pageable pageable) {
+        return iBookStudentRepository.findByIdStudent(text ,id, pageable);
+    }
+
+    @Override
+    public String findStudent(Integer id) {
+        return iBookStudentRepository.findStudent(id);
+    }
 }
