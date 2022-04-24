@@ -3,6 +3,7 @@ package quan_ly_thu_vien.demo.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import quan_ly_thu_vien.demo.model.BookStudent;
+import quan_ly_thu_vien.demo.model.Student;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface IBookStudentService {
     Page<BookStudent> findAll(Pageable pageable);
 
     List<Integer> findByDate(String text);
+
+    Page<BookStudent> findWarning(String text, Pageable pageable);
 }

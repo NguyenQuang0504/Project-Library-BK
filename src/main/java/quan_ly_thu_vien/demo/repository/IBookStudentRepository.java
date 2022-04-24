@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import quan_ly_thu_vien.demo.model.BookStudent;
+import quan_ly_thu_vien.demo.model.Student;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface IBookStudentRepository extends JpaRepository<BookStudent, Integ
     String findName(Integer id);
     @Query(value = "select idBookStudent from bookstudent where dateEnd >= ?1", nativeQuery = true)
     List<Integer> findIdByDate(String text);
+    @Query(value = "select * from bookstudent where dateEnd >= ?1", nativeQuery = true)
+    Page<BookStudent> findWarning(String text, Pageable pageable);
 }

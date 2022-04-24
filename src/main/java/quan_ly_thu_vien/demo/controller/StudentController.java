@@ -16,6 +16,8 @@ import quan_ly_thu_vien.demo.service.IBookService;
 import quan_ly_thu_vien.demo.service.IBookStudentService;
 import quan_ly_thu_vien.demo.service.IStudentService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -48,5 +50,14 @@ public class StudentController {
         iBookStudentService.save(bookStudent);
         iBookService.setNumBook(bookStudent.getBook().getBook_id());
         return "redirect:/student/home";
+    }
+    @GetMapping("/listWarning")
+    public String listWarning(@PageableDefault(size = 7)Pageable pageable, ModelMap modelMap){
+        LocalDate dateStart = LocalDate.now();
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String text = dateStart.format(formatters);
+        Page<BookStudent> listStudent = iBookStudentService.findWarning(text, pageable);
+        modelMap.addAttribute("list", listStudent);
+        return "student/warning";
     }
 }

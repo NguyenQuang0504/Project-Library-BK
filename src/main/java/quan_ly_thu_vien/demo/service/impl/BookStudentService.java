@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import quan_ly_thu_vien.demo.model.BookStudent;
+import quan_ly_thu_vien.demo.model.Student;
 import quan_ly_thu_vien.demo.repository.IBookStudentRepository;
 import quan_ly_thu_vien.demo.service.IBookStudentService;
 
@@ -43,5 +44,10 @@ public class BookStudentService implements IBookStudentService {
     @Override
     public List<Integer> findByDate(String text) {
         return iBookStudentRepository.findIdByDate(text);
+    }
+
+    @Override
+    public Page<BookStudent> findWarning(String text, Pageable pageable) {
+        return iBookStudentRepository.findWarning(text, pageable);
     }
 }

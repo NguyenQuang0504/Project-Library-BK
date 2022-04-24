@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .content-header {
+            position: absolute;
+            left: 275px;
+            top: 15px;
+        }
+
+        .table-control td, th {
+            border: 10px solid black;
+            border: 10px solid black;
+        }
+
+        th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        .table-control span {
+            font-size: 25px;
+            color: #000000;
+            font-family: Arial;
+        }
+
+        #listCategory {
+            padding-top: 20px;
+        }
+
+        #tableOne {
+            margin-top: 55px;
+            width: 90%;
+        }
+
+        #tableOne tr {
+            height: 40px;
+            font-size: 20px;
+            font-family: system-ui;
+        }
+
+        #tableOne th, td {
+            text-align: left;
+            padding: 8px;
+            border: 0px solid white;
+            border-collapse: collapse;
+        }
+
+        #tableOne tr:nth-child(even) {
+            background-color: #c4cccc;
+        }
+
+        #tableOne th {
+            background-color: #000000;
+            color: white;
+        }
+
+        #header-table {
+            font-size: 25px;
+            font-family: system-ui;
+            font-weight: 600;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-buffer"></ion-icon></span>
+                    <span class="tittle">Library BK</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/home/display}">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="tittle">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/student/home}">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Sinh viên</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                    <span class="tittle">Giảng viên</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/display}">
+                    <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                    <span class="tittle">Sách</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/control/home}">
+                    <span class="icon"><ion-icon name="speedometer"></ion-icon></span>
+                    <span class="tittle">Phòng điều khiển</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/notification/display}">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <span class="tittle">Thông báo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="tittle">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Thong tin-->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div>
+                   <span><img style=" position: absolute;
+                                width: 70px;
+                                left: 200px;
+                                top: 5px;"
+                              src="/image/Logodhbk.jpg" alt=""></span>
+            </div>
+            <div class="content-header">
+                <h3>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</h3>
+                <H3>HỆ THỐNG QUẢN LÝ THƯ VIỆN</H3>
+            </div>
+            <div class="user">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <hr style="margin-top: 30px">
+        <div id="listCategory">
+            <center>
+                <h3 id="header-table">DANH SÁCH SINH VIÊN QUÁ HẠN TRẢ SÁCH</h3>
+                <table id="tableOne">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên</th>
+                        <th>MSSV</th>
+                        <th>Lớp</th>
+                        <th>Email</th>
+                        <th>Ngày mượn</th>
+                        <th>Ngày phải trả</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="element :${list}">
+                        <td th:text="${element.student.getStudent_id()}"></td>
+                        <td th:text="${element.student.getName()}"></td>
+                        <td th:text="${element.student.getMssv()}"></td>
+                        <td th:text="${element.student.getClassName()}"></td>
+                        <td th:text="${element.student.getEmail()}"></td>
+                        <td th:text="${element.getDateStart()}"></td>
+                        <td th:text="${element.getDateEnd()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a style="text-decoration: none" th:href="@{'/student/listWarning'(page=${list.number - 1})}"
+                       th:if="${list.hasPrevious()}"><span>Back</span></a>
+                    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+                    <a style="text-decoration: none" th:href="@{'/student/listWarning'(page=${list.number + 1})}"
+                       th:if="${list.hasNext()}"><span>Next</span></a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/javascript/homejs.js"></script>
+</body>
+</html>

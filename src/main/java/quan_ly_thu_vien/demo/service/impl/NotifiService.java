@@ -29,4 +29,9 @@ public class NotifiService implements INotifiService {
     public Page<Notification> findAll(Pageable pageable) {
         return iNotifiRepository.findAll(pageable);
     }
+
+    @Override
+    public void delete(Integer id) {
+        iNotifiRepository.deleteById(id);
+    }
 }

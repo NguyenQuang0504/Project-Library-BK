@@ -82,19 +82,35 @@
         .toast:not(.show) {
             display: block;
         }
-        .notification{
+
+        .notification {
             background-color: #C3CDC0;
             margin-top: 35px;
             width: 40%;
             margin-left: 15px;
+            border-radius: 20px;
+            color: blue;
         }
-        .header-notifi{
+
+        .header-notifi {
             margin-top: 10px;
             text-align: center;
         }
-        .notification-content{
+
+        .notification-content {
             background-color: #C3CDC0;
             margin-top: 35px;
+            border-radius: 20px;
+            color: blue;
+        }
+
+        .btn-close {
+            padding-top: 30px;
+        }
+
+        #noti-content {
+            margin-top: 28px;
+            margin-left: 40px;
         }
     </style>
 </head>
@@ -182,7 +198,12 @@
             <div class="content-notification container">
                 <div class="row">
                     <div class="notification-content col-7">
-                        <h3 class="header-notifi">Xem thông báo</h3>
+                        <h3 class="header-notifi"> Xem thông báo </h3>
+                        <div id="noti-content">
+                            <a th:href="@{/student/listWarning}"> Xem danh sách sinh viên trễ hạn trả sách </a>
+                            <br>
+                            <a th:href="@{/book/listWarning}"> Danh sách sách đã hết </a>
+                        </div>
                     </div>
                     <div class="notification col-5">
                         <h3 class="header-notifi">Thông báo trong ngày</h3>
@@ -197,8 +218,8 @@
                                             style="color: yellow"> hết hạn mượn sách!!</span>
                                     </div>
                                     <a th:href="${element.getId()}">
-                                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                            data-bs-dismiss="toast" aria-label="Close"></button>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                data-bs-dismiss="toast" aria-label="Close"></button>
                                     </a>
                                 </div>
                             </div>

@@ -12,4 +12,6 @@ public interface INotifiService {
     List<Integer> findAllId();
 
     Page<Notification> findAll(Pageable pageable);
+
+    void delete(Integer id);
 }

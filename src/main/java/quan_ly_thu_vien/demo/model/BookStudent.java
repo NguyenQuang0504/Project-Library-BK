@@ -39,6 +39,14 @@ public class BookStudent {
     @OneToOne(mappedBy = "bookStudent")
     private Notification notification;
 
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
+    }
+
     public BookStudent(Integer idBookStudent, String dateStart, String dateEnd, Student student, Book book) {
         this.idBookStudent = idBookStudent;
         this.dateStart = dateStart;
