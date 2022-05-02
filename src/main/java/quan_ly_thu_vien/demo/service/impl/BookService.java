@@ -64,4 +64,9 @@ public class BookService implements IBookService {
         iBookRepository.addBook(book, numBook);
     }
 
+    @Override
+    public Page<Book> findByWarning(Pageable pageable) {
+        return iBookRepository.findByWarning(pageable);
+    }
+
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         .switch input {
             opacity: 0;
@@ -74,7 +75,7 @@
         }
 
         #tableOne tr:nth-child(even) {
-            background-color: #c4cccc;
+            background-color: #cccccc;
         }
 
         #tableOne th {
@@ -89,11 +90,119 @@
             padding-top: 15px;
         }
 
+        #search input {
+            border: 1px unset;
+            height: 100%;
+            font-size: 20px;
+        }
+
+        #search .button-search {
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border: none;
+            width: 88px;
+            height: 100%;
+            background-color: #cccccc;
+        }
+
+        #search .button-search:hover {
+            cursor: pointer;
+            background: black;
+            color: white;
+        }
+
+        #search p {
+            font-family: system-ui;
+            font-weight: 600;
+            font-size: 25px;
+        }
+
+        #create {
+            display: inline-block;
+        }
+
+        #add a {
+            position: absolute;
+            left: 55px;
+            color: black;
+            text-decoration: none;
+            font-family: system-ui;
+            margin-top: -15px;
+        }
+
+        #add a:hover {
+            color: #cccccc;
+        }
+
+        #add {
+            display: inline-block;
+        }
+
+        #create a {
+            position: absolute;
+            right: 55px;
+            color: black;
+            text-decoration: none;
+            font-family: system-ui;
+            margin-top: -15px;
+        }
+
+        #create a:hover {
+            color: #cccccc;
+        }
+
+        #nav-table {
+            position: relative;
+            width: 100%;
+            height: 15px;
+            margin-top: -35px;
+        }
+
+        #search {
+            position: absolute;
+            display: inline-block;
+            position: absolute;
+            display: inline-block;
+            right: 6%;
+            top: 38px;
+            height: 40px;
+        }
+
+        #back {
+            position: absolute;
+            position: absolute;
+            left: 4%;
+            top: 50px;
+            font-size: 25px;
+        }
+
+        #input-search {
+            padding: 10px 30px;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border: none;
+            background: #cccccc;
+            color: black;
+            cursor: pointer;
+        }
+
+        .back-list {
+            text-decoration: none;
+            color: black;
+            margin-left: 15px;
+            font-family: system-ui;
+        }
+
+        .back-list:hover {
+            color: #999999;
+        }
+
         #paging svg {
             margin-bottom: -3px;
         }
-
-        #paging {
+        #paging{
             display: inline-block;
             padding: 10px;
             background-color: #cccccc;
@@ -181,49 +290,62 @@
             </div>
         </div>
         <hr style="margin-top: 30px">
-        <div id="listCategory">
-            <h2 style="color: #287bff; margin-left: 20px" th:text="${mess}"></h2>
+        <div style="padding-top: 20px;">
             <center>
-                <h3 id="header-table">THỂ LOẠI SÁCH</h3>
-                <table id="tableOne">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Thể loại</th>
-                        <th>Số lượng sách</th>
-                        <th>Xem sách</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="category :${listCategory}">
-                        <td th:text="${category.getId()}"></td>
-                        <td th:text="${category.getCategory()}"></td>
-                        <td th:text="${category.getBookList().size()}"></td>
-                        <td>
-                            <a th:href="@{/book/category/{id}(id=${category.getId()})}">Xem sách</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div id="paging">
-                    <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number - 1})}"
-                       ><span>
+                <h3 id="header-table">SÁCH ĐÃ HẾT</h3>
+            </center>
+            <div id="nav-table">
+                <div id="back">
+                    <a class="back-list" th:href="@{/notification/display}">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-backspace-fill" viewBox="0 0 16 16">
+                             <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z"/>
+                        </svg>
+                    </span>
+                        <span>Back notification</span>
+                    </a>
+                </div>
+            </div>
+            <div id="listCategory">
+                <center>
+                    <table id="tableOne">
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sách</th>
+                            <th>Tác giả</th>
+                            <th>Số lượng</th>
+                        </tr>
+                        <tr th:each="book :${listBook}">
+                            <td th:text="${book.book_id}"></td>
+                            <td th:text="${book.getName()}"></td>
+                            <td th:text="${book.getAuthor()}"></td>
+                            <td th:text="${book.getNumBook()}"></td>
+                        </tr>
+                    </table>
+                    <div id="paging">
+                        <a style="text-decoration: none"
+                           th:href="@{'/book/listWarning'(page=${listBook.number - 1})}"
+                           ><span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-chevron-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
-                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                         </svg>
                     </span></a>
-                    <span th:text="${listCategory.number + 1}"></span>/<span
-                        th:text="${listCategory.totalPages}"></span>
-                    <a style="text-decoration: none" th:href="@{'/book/display'(page=${listCategory.number + 1})}">
-                       <span>
+                        <span th:text="${listBook.number + 1}"></span>/<span th:text="${listBook.totalPages}"></span>
+                        <a style="text-decoration: none"
+                           th:href="@{'/book/listWarning'(page=${listBook.number + 1})}"
+                           ><span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                         </svg>
-                </span></a>
-                </div>
-            </center>
+                    </span></a>
+                    </div>
+                </center>
+            </div>
+            <br>
+            <hr>
         </div>
     </div>
 </div>

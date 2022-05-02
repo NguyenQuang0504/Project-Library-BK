@@ -26,4 +26,6 @@ public interface IBookService  {
     void returnBook(Integer idBook);
 
     void addBook(Integer book, Integer numBook);
+
+    Page<Book> findByWarning(Pageable pageable);
 }

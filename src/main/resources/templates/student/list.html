@@ -136,6 +136,18 @@
             background: black;
             color: white;
         }
+        #paging svg {
+            margin-bottom: -3px;
+        }
+        #paging{
+            display: inline-block;
+            padding: 10px;
+            background-color: #cccccc;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            border: none;
+        }
     </style>
     <script type="text/javascript">
         function getData(listStudent) {
@@ -285,12 +297,22 @@
                     </tr>
                     </tbody>
                 </table>
-                <div>
+                <div id="paging">
                     <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number - 1})}"
-                       th:if="${listStudent.hasPrevious()}"><span>Back</span></a>
+                       >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        <span></span></a>
                     <span th:text="${listStudent.number + 1}"></span>/<span th:text="${listStudent.totalPages}"></span>
                     <a style="text-decoration: none" th:href="@{'/student/home'(page=${listStudent.number + 1})}"
-                       th:if="${listStudent.hasNext()}"><span>Next</span></a>
+                       >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                        <span></span></a>
                 </div>
             </center>
         </div>

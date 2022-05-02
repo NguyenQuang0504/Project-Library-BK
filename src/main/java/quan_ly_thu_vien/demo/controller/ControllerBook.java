@@ -109,4 +109,10 @@ public class ControllerBook {
         iBookService.addBook(book, numBook);
         return "redirect:/book/display";
     }
+    @GetMapping("/listWarning")
+    public String listWarning(@PageableDefault(size = 7)Pageable pageable,ModelMap modelMap){
+        Page<Book> list = iBookService.findByWarning(pageable);
+        modelMap.addAttribute("listBook", list);
+        return "book/listWarning";
+    }
 }

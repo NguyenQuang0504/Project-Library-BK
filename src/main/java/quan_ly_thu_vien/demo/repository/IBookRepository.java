@@ -39,4 +39,7 @@ public interface IBookRepository extends JpaRepository<Book, Integer> {
     @Transactional
     @Query(value = "update book set numBook=numBook+?2 where book_id=?1", nativeQuery = true)
     void addBook(Integer book, Integer numBook);
+    @Query(value = "select * from book where numBook = 0", nativeQuery = true)
+    Page<Book> findByWarning(Pageable pageable);
+
 }
