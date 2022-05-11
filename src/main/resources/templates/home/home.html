@@ -138,9 +138,9 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/monitoring/home}">
                     <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                    <span class="tittle">Giảng viên</span>
+                    <span class="tittle">Giám sát</span>
                 </a>
             </li>
             <li>
@@ -203,17 +203,15 @@
                     <ion-icon name="people-outline"></ion-icon>
                 </div>
             </a>
-
-            <div class="card">
+            <a class="card" th:href="@{/monitoring/home}">
                 <div>
                     <div class="numbers">4</div>
-                    <div class="cardName">Giảng viên</div>
+                    <div class="cardName">Giám sát</div>
                 </div>
                 <div class="iconBox">
                     <ion-icon name="people-outline"></ion-icon>
                 </div>
-            </div>
-
+            </a>
             <a class="card" th:href="@{/book/display}">
                 <div>
                     <div class="numbers" th:text="${size}"></div>
@@ -233,7 +231,7 @@
                     <ion-icon name="speedometer"></ion-icon>
                 </div>
             </a >
-            <div class="card" th:href="@{/notification/display}">
+            <a class="card" th:href="@{/notification/display}">
                 <div>
                     <div class="numbers">2</div>
                     <div class="cardName">Thông báo</div>
@@ -241,7 +239,7 @@
                 <div class="iconBox">
                     <ion-icon name="mail"></ion-icon>
                 </div>
-            </div>
+            </a>
         </div>
         <div>
             <div class="control">
