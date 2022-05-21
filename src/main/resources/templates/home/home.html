@@ -19,9 +19,19 @@
                             <br>
                             <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span>${data[2].status}</span></span>
                             <br>
-                            <span><ion-icon name="bulb"></ion-icon> Đèn: <span>${data[3].status}</span> </span>
+                            <span><ion-icon name="bulb"></ion-icon> Đèn: <span>
+                            <span th:switch="${data[3].getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                            </span> </span>
                             <br>
-                            <span><ion-icon name="cog"></ion-icon> Quạt: <span>${data[4].status}</span></span>
+                            <span><ion-icon name="cog"></ion-icon> Quạt: <span>
+                             <span th:switch="${data[4].getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                            </span></span>
                             <br>
                             <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>`
                 }
@@ -264,13 +274,23 @@
                                                                                   th:if="${element.getId()==3}"
                                                                                   th:text="${element.getStatus()}"></span></span>
                         <br>
-                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}"
-                                                                           th:if="${element.getId()==4}"
-                                                                           th:text="${element.getStatus()}"></span> </span>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}" th:if="${element.getId()==4}">
+<!--                            <span th:if="${element.getStatus()}"><p>Bat</p></span>-->
+<!--                            <span th:utext="${!element.getStatus()}"><p>Tat</p></span>-->
+                            <span th:switch="${element.getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                        </span> </span>
                         <br>
                         <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}"
                                                                            th:if="${element.getId()==5}"
-                                                                           th:text="${element.getStatus()}"></span></span>
+                                                                            >
+                             <span th:switch="${element.getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                        </span></span>
                         <br>
                         <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
                     </div>
