@@ -33,27 +33,29 @@ public class RFIDController {
         List<StudentOnDay> studentOnDays = iStudentOnDayService.findAll();
         StudentOnDay studentOnDay = new StudentOnDay();
         LocalDateTime current = LocalDateTime.now();
-        //sử dụng class DateTimeFormatter để định dạng ngày giờ theo kiểu pattern
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        //sử dụng phương thức format() để định dạng ngày giờ hiện tại rồi gán cho chuỗi formatted
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         String formatted = current.format(formatter);
         for (Integer i = 0 ; i < studentIds.size() ; i++){
             if (studentIds.get(i).getIdCard().equals(ID)){
-                studentOnDay.setName(studentIds.get(i).getName());
-                studentOnDay.setDate(studentIds.get(i).getDate());
-                studentOnDay.setEmail(studentIds.get(i).getEmail());
-                studentOnDay.setClassName(studentIds.get(i).getClassName());
-                studentOnDay.setIdCard(studentIds.get(i).getIdCard());
                 if (studentIds.get(i).getStatus()) {
+                    studentOnDay.setName(studentIds.get(i).getName());
+                    studentOnDay.setDate(studentIds.get(i).getDate());
+                    studentOnDay.setEmail(studentIds.get(i).getEmail());
+                    studentOnDay.setClassName(studentIds.get(i).getClassName());
+                    studentOnDay.setIdCard(studentIds.get(i).getIdCard());
                     studentOnDay.setDateIn(formatted);
                     studentOnDay.setDateOut("0");
                     studentIds.get(i).setStatus(false);
                     iStudentOnDayService.save(studentOnDay);
                 }
                 else if(!studentIds.get(i).getStatus()) {
-                    studentOnDay.setDateIn("0");
-                    studentOnDay.setDateOut(formatted);
-                    studentIds.get(i).setStatus(true);
+                    for (Integer j=0 ; j<studentOnDays.size();j++){
+                        if (studentOnDays.get(i).getIdCard().equals(ID)){
+                            studentOnDay = studentOnDays.get(i);
+                            studentOnDay.setDateOut(formatted);
+                            studentIds.get(i).setStatus(true);
+                        }
+                    }
                 }
                 iStudentOnDayService.save(studentOnDay);
                 break;
