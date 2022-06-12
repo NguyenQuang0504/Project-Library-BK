@@ -15,7 +15,7 @@ public class RFIDController {
     @Autowired
     private IStudentId iStudentId;
 
-    @PostMapping("/rfid")
+    @GetMapping("/rfid")
     public ResponseEntity<StudentId> getRFID(@RequestParam String ID){
         StudentId student = new StudentId();
         student.setIdCard(ID);
