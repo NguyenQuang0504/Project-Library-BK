@@ -48,8 +48,10 @@ public class RFIDController {
                     studentOnDay.setDateIn(formatted);
                     studentOnDay.setDateOut("0");
                     studentIds.get(i).setStatus(false);
+                    iStudentOnDayService.save(studentOnDay);
                 }
-                if (!studentIds.get(i).getStatus()) {
+                else if(!studentIds.get(i).getStatus()) {
+                    studentOnDay.setDateIn("0");
                     studentOnDay.setDateOut(formatted);
                     studentIds.get(i).setStatus(true);
                 }
