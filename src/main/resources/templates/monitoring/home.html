@@ -175,7 +175,7 @@
                 <table id="tableOne">
                     <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>STT</th>
                         <th>Tên</th>
                         <th>Lớp</th>
                         <th>Email</th>
@@ -184,8 +184,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="student :${studentList}">
-                        <td th:text="${student.getId()}"></td>
+                    <tr th:each="student, state :${studentList}">
+                        <td th:text="${state.index+1}"></td>
                         <td th:text="${student.getName()}"></td>
                         <td th:text="${student.getClassName()}"></td>
                         <td th:text="${student.getEmail()}"></td>
