@@ -1,13 +1,12 @@
 package quan_ly_thu_vien.demo.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class StudentId {
+public class StudentOnDay {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -16,14 +15,46 @@ public class StudentId {
     private String date;
     private String className;
     private String email;
+    private String dateIn;
+    private String DateOut;
 
-    public StudentId(Integer id, String idCard, String name, String date, String className, String email) {
+    public StudentOnDay(Integer id, String idCard, String name, String date, String className, String email, String dateIn, String dateOut) {
         this.id = id;
         this.idCard = idCard;
         this.name = name;
         this.date = date;
         this.className = className;
         this.email = email;
+        this.dateIn = dateIn;
+        DateOut = dateOut;
+    }
+
+    public StudentOnDay(Integer id, String idCard, String name, String date, String className, String email) {
+        this.id = id;
+        this.idCard = idCard;
+        this.name = name;
+        this.date = date;
+        this.className = className;
+        this.email = email;
+    }
+
+    public StudentOnDay() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public String getName() {
@@ -58,27 +89,19 @@ public class StudentId {
         this.email = email;
     }
 
-    public StudentId() {
+    public String getDateIn() {
+        return dateIn;
     }
 
-    public StudentId(Integer id, String idCard) {
-        this.id = id;
-        this.idCard = idCard;
+    public void setDateIn(String dateIn) {
+        this.dateIn = dateIn;
     }
 
-    public Integer getId() {
-        return id;
+    public String getDateOut() {
+        return DateOut;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
+    public void setDateOut(String dateOut) {
+        DateOut = dateOut;
     }
 }

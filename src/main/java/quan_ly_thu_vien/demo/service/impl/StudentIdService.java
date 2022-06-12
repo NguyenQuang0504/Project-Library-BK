@@ -6,6 +6,8 @@ import quan_ly_thu_vien.demo.model.StudentId;
 import quan_ly_thu_vien.demo.repository.IStudentIdRepository;
 import quan_ly_thu_vien.demo.service.IStudentId;
 
+import java.util.List;
+
 @Service
 public class StudentIdService implements IStudentId {
     @Autowired
@@ -14,5 +16,10 @@ public class StudentIdService implements IStudentId {
     @Override
     public void save(StudentId student) {
         iStudentIdRepository.save(student);
+    }
+
+    @Override
+    public List<StudentId> findAll() {
+        return iStudentIdRepository.findAll();
     }
 }
