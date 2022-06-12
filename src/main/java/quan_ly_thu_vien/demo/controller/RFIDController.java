@@ -44,20 +44,26 @@ public class RFIDController {
                     studentOnDay.setClassName(studentIds.get(i).getClassName());
                     studentOnDay.setIdCard(studentIds.get(i).getIdCard());
                     studentOnDay.setDateIn(formatted);
-                    studentOnDay.setDateOut("0");
                     studentIds.get(i).setStatus(false);
                     iStudentOnDayService.save(studentOnDay);
+                    break;
                 }
                 else if(!studentIds.get(i).getStatus()) {
-                    for (Integer j=0 ; j<studentOnDays.size();j++){
-                        if (studentOnDays.get(i).getIdCard().equals(ID)){
-                            studentOnDay = studentOnDays.get(i);
-                            studentOnDay.setDateOut(formatted);
-                            studentIds.get(i).setStatus(true);
+                    for (Integer j = 0 ; j < studentOnDays.size() ; j++){
+                        if (studentOnDays.get(j).getIdCard().equals(ID)){
+                            if (studentOnDays.get(j).getDateOut() == null){
+                                System.out.println("Vo day roi");
+                                studentOnDay = studentOnDays.get(j);
+                                studentOnDay.setDateOut(formatted);
+                                studentIds.get(i).setStatus(true);
+                                iStudentOnDayService.save(studentOnDay);
+                            }
+                           else{
+                                System.out.println("Lỗi");
+                            }
                         }
                     }
                 }
-                iStudentOnDayService.save(studentOnDay);
                 break;
             }
         }
