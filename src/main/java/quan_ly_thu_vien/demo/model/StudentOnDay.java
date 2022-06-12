@@ -18,6 +18,9 @@ public class StudentOnDay {
     private String dateIn;
     private String DateOut;
 
+    public StudentOnDay() {
+    }
+
     public StudentOnDay(Integer id, String idCard, String name, String date, String className, String email, String dateIn, String dateOut) {
         this.id = id;
         this.idCard = idCard;
@@ -36,9 +39,6 @@ public class StudentOnDay {
         this.date = date;
         this.className = className;
         this.email = email;
-    }
-
-    public StudentOnDay() {
     }
 
     public Integer getId() {

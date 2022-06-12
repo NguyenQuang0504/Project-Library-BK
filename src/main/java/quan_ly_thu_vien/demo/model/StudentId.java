@@ -9,21 +9,34 @@ import javax.persistence.Id;
 @Entity
 public class StudentId {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Boolean status;
     private String idCard;
     private String name;
     private String date;
     private String className;
     private String email;
 
-    public StudentId(Integer id, String idCard, String name, String date, String className, String email) {
+    public StudentId() {
+    }
+
+    public StudentId(Integer id, Boolean status, String idCard, String name, String date, String className, String email) {
         this.id = id;
+        this.status = status;
         this.idCard = idCard;
         this.name = name;
         this.date = date;
         this.className = className;
         this.email = email;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -56,14 +69,6 @@ public class StudentId {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public StudentId() {
-    }
-
-    public StudentId(Integer id, String idCard) {
-        this.id = id;
-        this.idCard = idCard;
     }
 
     public Integer getId() {
