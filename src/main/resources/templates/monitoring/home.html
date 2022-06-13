@@ -90,6 +90,36 @@
             padding-top: 15px;
         }
     </style>
+    <script>
+        function display() {
+            $(document).ready(function () {
+                function printData(data) {
+                    return ` <tr>
+                        <td>${data.index+1}</td>
+                        <td>${data.name}</td>
+                        <td>${data.className}</td>
+                        <td>${data.email}</td>
+                        <td>${data.dateIn}</td>
+                        <td>${data.dateOut}</td>
+                    </tr>`;
+                }
+                $.ajax({
+                    type: "GET",
+                    url: "/rfid/getAll",
+                    success: function (data) {
+                        let htmlDisplayHome = "";
+                        for (let i = 0; i<data.length;i++){
+                            htmlDisplayHome += printData(data[i]);
+                        }
+                        document.getElementById("table-student").innerHTML = htmlDisplayHome;
+                    }
+                    })
+            });
+        }
+        setInterval(function () {
+            display()
+        }, 3000);
+    </script>
 </head>
 <body>
 <div>
@@ -183,7 +213,7 @@
                         <th>Time out</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table-student">
                     <tr th:each="student, state :${studentList}">
                         <td th:text="${state.index+1}"></td>
                         <td th:text="${student.getName()}"></td>

@@ -29,7 +29,7 @@ public class StudentOnDay {
         this.className = className;
         this.email = email;
         this.dateIn = dateIn;
-        DateOut = dateOut;
+        this.DateOut = dateOut;
     }
 
     public StudentOnDay(Integer id, String idCard, String name, String date, String className, String email) {

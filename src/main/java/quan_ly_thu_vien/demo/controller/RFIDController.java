@@ -11,9 +11,7 @@ import quan_ly_thu_vien.demo.model.StudentOnDay;
 import quan_ly_thu_vien.demo.service.IStudentId;
 import quan_ly_thu_vien.demo.service.IStudentOnDayService;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -24,7 +22,6 @@ public class RFIDController {
 
     @Autowired
     private IStudentOnDayService iStudentOnDayService;
-
 
     @GetMapping("/rfid")
     public ResponseEntity<StudentId> getRFID(@RequestParam String ID){
@@ -68,5 +65,10 @@ public class RFIDController {
             }
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/rfid/getAll")
+    public ResponseEntity<List<StudentOnDay>> getStudent(){
+        List<StudentOnDay> list = iStudentOnDayService.findAll();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
