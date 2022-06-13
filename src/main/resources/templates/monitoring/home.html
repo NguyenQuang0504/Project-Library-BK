@@ -95,7 +95,7 @@
             $(document).ready(function () {
                 function printData(data) {
                     return ` <tr>
-                        <td>${data.index+1}</td>
+                        <td>${data.idCard}</td>
                         <td>${data.name}</td>
                         <td>${data.className}</td>
                         <td>${data.email}</td>
@@ -205,7 +205,7 @@
                 <table id="tableOne">
                     <thead>
                     <tr>
-                        <th>STT</th>
+                        <th>ID Card</th>
                         <th>Tên</th>
                         <th>Lớp</th>
                         <th>Email</th>
@@ -215,7 +215,7 @@
                     </thead>
                     <tbody id="table-student">
                     <tr th:each="student, state :${studentList}">
-                        <td th:text="${state.index+1}"></td>
+                        <td th:text="${student.getIdCard()}"></td>
                         <td th:text="${student.getName()}"></td>
                         <td th:text="${student.getClassName()}"></td>
                         <td th:text="${student.getEmail()}"></td>
