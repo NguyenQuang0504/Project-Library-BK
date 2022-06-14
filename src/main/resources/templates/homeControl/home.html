@@ -14,55 +14,122 @@
             let status2 = '';
             let status_lamp1 = '';
             let status_fan1 = '';
+            let status3 = '';
+            let status4 = '';
+            let status_lamp2 = '';
+            let status_fan2 = '';
             $(document).ready(function () {
                 function displayData(data) {
+                    status_lamp2 = data[8].status === 1 ? 'value = "1" ' : 'value = "0"';
+                    status_fan2 = data[9].status === 1 ? 'value = "1" ' : 'value = "0"';
+                    status3 = data[8].status === 1 ? 'checked' : '';
+                    status4 = data[9].status === 1 ? 'checked' : '';
                     status_lamp1 = data[3].status === 1 ? 'value = "1" ' : 'value = "0"';
                     status_fan1 = data[4].status === 1 ? 'value = "1" ' : 'value = "0"';
                     status1 = data[3].status === 1 ? 'checked' : '';
                     status2 = data[4].status === 1 ? 'checked' : '';
-
                     return `
-                            <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span >${data[0].status}</span></span>
-                            <br>
-                            <span><ion-icon name="water"></ion-icon> Độ ẩm: <span>${data[1].status}</span></span>
-                            <br>
-                            <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span>${data[2].status}</span></span>
-                            <br>
-                            <span><ion-icon name="bulb"></ion-icon> Đèn: <span>${data[3].status}</span> </span>
-                            <br>
-                            <span><ion-icon name="cog"></ion-icon> Quạt: <span>${data[4].status}</span></span>
-                            <br>
-                            <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
-                            <hr>
-                            <table style="width: 100%">
-                                        <tr>
-                                            <th><span>ĐÈN</span></th>
-                                            <th><span>QUẠT</span></th>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                               <span>OFF</span>
-                                                <label class="switch">
-                                                    <input type="hidden" id="status-lamp1"` + status_lamp1 + `>
-                                                    <input id="control-lamp1" type="checkbox"` + status1 + `>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                <span>ON</span>
-                                            </th>
-                                            <th>
-                                                <span>OFF</span>
-                                                <label class="switch">
-                                                <input type="hidden" id="status-fan1"` + status_fan1 + `>
+                        <td>
+                            <div style="left: 25px;" id="control-1">
+                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span >${data[0].status}</span></span>
+                                <br>
+                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <span >${data[1].status}</span></span>
+                                <br>
+                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span >${data[2].status}</span></span>
+                                <br>
+                                <span><ion-icon name="bulb"></ion-icon> Đèn: <span >${data[3].status}</span></span>
+                                <br>
+                                <span><ion-icon name="cog"></ion-icon> Quạt:<span >${data[4].status}</span></span>
+                                <br>
+
+                                <hr>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>
+                                                <span>
+                                                    ĐÈN
+                                                </span>
+                                        </th>
+                                        <th>
+                                                <span>
+                                                    QUẠT
+                                                </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                         <input type="hidden" id="status-lamp1"` + status_lamp1 + `>
+                                                           <input id="control-lamp1" type="checkbox"` + status1 + `>
+                                                            <span class="slider round"></span>
+                                                 </label>
+                                            <span>ON</span>
+                                        </th>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                    <input type="hidden" id="status-fan1"` + status_fan1 + `>
                                                     <input id="control-fan1" type="checkbox"` + status2 + `>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                <span>ON</span>
-                                            </th>
-                                        </tr>
-                                    </table>
+                                                     <span class="slider round"></span>
+                                            </label>
+                                            <span>ON</span>
+                                        </th>
+                                    </tr>
+                                </table>
                             </div>
                         </td>
-                        <td>`
+                        <td>
+                            <div style="left: 25px;" id="control-2">
+                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span >${data[5].status}</span></span>
+                                <br>
+                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <span >${data[6].status}</span></span>
+                                <br>
+                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span >${data[7].status}</span></span>
+                                <br>
+                                <span><ion-icon name="bulb"></ion-icon> Đèn: <span >${data[8].status}</span></span>
+                                <br>
+                                <span><ion-icon name="cog"></ion-icon> Quạt:<span >${data[9].status}</span></span>
+                                <br>
+
+                                <hr>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>
+                                                <span>
+                                                    ĐÈN
+                                                </span>
+                                        </th>
+                                        <th>
+                                                <span>
+                                                    QUẠT
+                                                </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                <input type="hidden" id="status-lamp2"` + status_lamp2 + `>
+                                                           <input id="control-lamp2" type="checkbox"` + status3 + `>
+                                                            <span class="slider round"></span>
+                                            </label>
+                                            <span>ON</span>
+                                        </th>
+                                        <th>
+                                            <span>OFF</span>
+                                            <label class="switch">
+                                                <input type="hidden" id="status-fan2"` + status_fan2 + `>
+                                                    <input id="control-fan2" type="checkbox"` + status4 + `>
+                                                     <span class="slider round"></span>
+                                            </label>
+                                            <span>ON</span>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    `
                 }
 
                 $.ajax({
@@ -70,12 +137,13 @@
                     url: "/home/getListEquipment",
                     success: function (data) {
                         let htmlDisplayHome = displayData(data);
-                        document.getElementById("control-1").innerHTML = htmlDisplayHome;
+                        document.getElementById("control").innerHTML = htmlDisplayHome;
                     }
                 });
                 event.preventDefault();
             })
         }
+
         setInterval(function () {
             display()
         }, 2000);
@@ -98,6 +166,28 @@
                 $.ajax({
                     type: "GET",
                     url: "/control/fan1",
+                    data: {Status: status},
+                })
+            })
+        })
+        //Dieu khien den 2
+        $(document).ready(function () {
+            $(document).on("click", "#control-lamp2", function (event) {
+                let status = $("#status-lamp2").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/control/lamp2",
+                    data: {Status: status},
+                })
+            })
+        })
+        //Dieu khien quat 2
+        $(document).ready(function () {
+            $(document).on("click", "#control-fan2", function (event) {
+                let status = $("#status-fan2").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/control/fan2",
                     data: {Status: status},
                 })
             })
@@ -299,7 +389,7 @@
                         <th><h3>Phòng 1</h3></th>
                         <th><h3>Phòng 2</h3></th>
                     </tr>
-                    <tr>
+                    <tr id="control">
                         <td>
                             <div style="left: 25px;" id="control-1">
                                 <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span
@@ -322,7 +412,7 @@
                                                                                    th:if="${element.getId()==5}"
                                                                                    th:text="${element.getStatus()}"></span></span>
                                 <br>
-                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+                                <!--                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>-->
                                 <hr>
                                 <table style="width: 100%">
                                     <tr>
@@ -365,28 +455,50 @@
                             </div>
                         </td>
                         <td>
-                            <div style="right: 25px;" class="control-2">
-                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p></p></span>
-                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
-                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
-                                <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
-                                <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
-                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+                            <div style="left: 25px;" id="control-2">
+                                <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==6}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="water"></ion-icon> Độ ẩm: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==7}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span
+                                        th:each="element :${listEquipment}" th:if="${element.getId()==8}"
+                                        th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}"
+                                                                                   th:if="${element.getId()==9}"
+                                                                                   th:text="${element.getStatus()}"></span> </span>
+                                <br>
+                                <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}"
+                                                                                   th:if="${element.getId()==10}"
+                                                                                   th:text="${element.getStatus()}"></span></span>
+                                <br>
+                                <!--                                <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>-->
                                 <hr>
                                 <table style="width: 100%">
                                     <tr>
                                         <th>
-                                            <span>ĐÈN</span>
+                                                <span>
+                                                    ĐÈN
+                                                </span>
                                         </th>
                                         <th>
-                                            <span>QUẠT</span>
+                                                <span>
+                                                    QUẠT
+                                                </span>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>
                                             <span>OFF</span>
                                             <label class="switch">
-                                                <input type="checkbox">
+                                                <input type="hidden" id="status-lamp2"
+                                                       th:value="${listEquipment[8].status}">
+                                                <input type="checkbox" th:checked="${listEquipment[8].status}"
+                                                       id="control-lamp2">
                                                 <span class="slider round"></span>
                                             </label>
                                             <span>ON</span>
@@ -394,7 +506,10 @@
                                         <th>
                                             <span>OFF</span>
                                             <label class="switch">
-                                                <input type="checkbox">
+                                                <input type="hidden" id="status-fan2"
+                                                       th:value="${listEquipment[9].status}">
+                                                <input type="checkbox" th:checked="${listEquipment[9].status}"
+                                                       id="control-fan2">
                                                 <span class="slider round"></span>
                                             </label>
                                             <span>ON</span>

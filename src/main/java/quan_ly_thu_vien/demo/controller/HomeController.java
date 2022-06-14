@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import quan_ly_thu_vien.demo.model.Book;
 import quan_ly_thu_vien.demo.model.Equipment;
@@ -16,6 +13,7 @@ import quan_ly_thu_vien.demo.service.IBookService;
 import quan_ly_thu_vien.demo.service.IEquimentService;
 import quan_ly_thu_vien.demo.service.IStudentService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -48,5 +46,18 @@ public class HomeController {
         iEquimentService.updateStatusG(gas);
         iEquimentService.updateStatusL(lamp);
         iEquimentService.updateStatusF(fan);
+    }
+
+    @PostMapping("/saveE")
+    public ResponseEntity<ArrayList<Equipment>> updateEquipment(@RequestBody ArrayList<Equipment> equipment){
+        System.out.println(equipment.toString());
+        iEquimentService.save(equipment);
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
+    }
+
+    @GetMapping("/getDevice")
+    public ResponseEntity<List<Equipment>> getDevice(){
+        List<Equipment> equipmentList = iEquimentService.getDevice();
+        return new ResponseEntity<>(equipmentList, HttpStatus.OK);
     }
 }

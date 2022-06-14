@@ -18,4 +18,12 @@ public interface IEquimentService {
     void updateStatusF(Integer fan);
 
     String findStatusLamp1();
+
+    void save(List<Equipment> equipment);
+
+    List<Equipment> getDevice();
+
+    void updateStatusL2(Integer status);
+
+    void updateStatusF2(Integer status);
 }

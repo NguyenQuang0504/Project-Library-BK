@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -51,7 +53,7 @@ public class ControllerBook {
             modelMap.addAttribute("listCategory", categoryBookList);
             return "book/create";
         }
-        iBookService.save(listBook1);
+            iBookService.save(listBook1);
         return "redirect:/book/display";
     }
 
@@ -61,7 +63,6 @@ public class ControllerBook {
         ModelAndView modelAndView = new ModelAndView("book/home", "listCategory", list);
         return modelAndView;
     }
-
     @GetMapping("/category/{id}")
     public ModelAndView getListBook(@PageableDefault(size = 7) Pageable pageable, @PathVariable Integer id, ModelMap modelMap) {
         Page<Book> listBook = iBookService.findByIdCategory(id, pageable);

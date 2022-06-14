@@ -47,4 +47,24 @@ public class EquimentService implements IEquimentService {
     public String findStatusLamp1() {
         return iEquimentRepository.findStatusLamp1();
     }
+
+    @Override
+    public void save(List<Equipment> equipment) {
+        iEquimentRepository.saveAll(equipment);
+    }
+
+    @Override
+    public List<Equipment> getDevice() {
+        return iEquimentRepository.getDevice();
+    }
+
+    @Override
+    public void updateStatusL2(Integer status) {
+        iEquimentRepository.updateStatusL2(status);
+    }
+
+    @Override
+    public void updateStatusF2(Integer status) {
+        iEquimentRepository.updateStatusF2(status);
+    }
 }

@@ -5,52 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/style/stylehome.css" type="text/css">
+    <title>Document</title>
     <script>
         // function cap nhat nhiet do va thong so len web
         function display() {
             $(document).ready(function () {
                 function displayData(data) {
-                    return `<h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                    return `
+                    <div style="left: 25px;" class="control-1">
+                    <div id="center1">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-house-door" viewBox="0 0 16 16">
                                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                            </svg> Phòng 1</h3>
-                            <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span >${data[0].status}</span></span>
-                            <br>
-                            <span><ion-icon name="water"></ion-icon> Độ ẩm: <span>${data[1].status}</span></span>
-                            <br>
-                            <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span>${data[2].status}</span></span>
-                            <br>
-                            <span><ion-icon name="bulb"></ion-icon> Đèn: <span>
-                            <span th:switch="${data[3].getStatus()}">
-                                <span th:case="0">Tắt</span>
-                                <span th:case="1">Bật</span>
-                            </span>
-                            </span> </span>
-                            <br>
-                            <span><ion-icon name="cog"></ion-icon> Quạt: <span>
-                             <span th:switch="${data[4].getStatus()}">
-                                <span th:case="0">Tắt</span>
-                                <span th:case="1">Bật</span>
-                            </span>
-                            </span></span>
-                            <br>
-                            <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>`
+                            </svg>
+                            Phòng 1
+                        </h3>
+                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ:
+                                <span>${data[0].status}</span>
+                        </span>
+                        <br>
+                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <span>${data[1].status}</span></span>
+                        <br>
+                        <span><ion-icon name="nuclear"></ion-icon> Khí độc:
+                        <span>${data[2].status}</span>
+                        </span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span>
+                             ${data[3].status}
+                             </span> </span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Quạt: <span>
+                             ${data[4].status}
+                             </span> </span>
+                        <br>
+                    </div>
+                </div>
+                <div style="right: 25px;" class="control-2">
+                    <div id="center2">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                 class="bi bi-house-door" viewBox="0 0 16 16">
+                                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                            </svg>
+                            Phòng 2
+                        </h3>
+                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ:<span>${data[5].status}</span></span>
+                        <br>
+                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <span>${data[6].status}</span></span>
+                        <br>
+                        <span><ion-icon name="nuclear"></ion-icon> Khí độc: <span>${data[7].status}</span></span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span>
+                             ${data[8].status}
+                             </span> </span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Quạt: <span>
+                             ${data[9].status}
+                             </span> </span>
+                        <br>
+                    </div>
+                </div>`
                 }
-
                 $.ajax({
                     type: "GET",
                     url: "/home/getListEquipment",
                     success: function (data) {
+                        console.log(data.length);
                         let htmlDisplayHome = displayData(data);
-                        document.getElementById("center1").innerHTML = htmlDisplayHome;
+                        document.getElementById("control").innerHTML = htmlDisplayHome;
                     }
                 });
                 event.preventDefault();
             })
         }
-
-        display(); // This will run on page load
         setInterval(function () {
-            display() // this will run after every 5 seconds
+            display();
         }, 5000);
     </script>
 
@@ -252,7 +283,7 @@
             </a>
         </div>
         <div>
-            <div class="control">
+            <div id="control" class="control">
                 <div style="left: 25px;" class="control-1">
                     <div id="center1">
                         <h3>
@@ -268,9 +299,9 @@
                         <br>
                         <span><ion-icon name="water"></ion-icon> Độ ẩm: <span th:each="element :${listEquipment}"
                                                                               th:if="${element.getId()==2}"
-                                                                              th:text="${element.getStatus()}"></span></span>
+                        th:text="${element.getStatus()}"></span></span>
                         <br>
-                        <span><ion-icon name="nuclear"></ion-icon> Khí gas: <span th:each="element :${listEquipment}"
+                        <span><ion-icon name="nuclear"></ion-icon> Khí độc: <span th:each="element :${listEquipment}"
                                                                                   th:if="${element.getId()==3}"
                                                                                   th:text="${element.getStatus()}"></span></span>
                         <br>
@@ -292,7 +323,10 @@
                             </span>
                         </span></span>
                         <br>
-                        <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+<!--                        <span th:switch="${listEquipment.get(2).getStatus()}">-->
+<!--                            <span th:case="0" th:text="An toàn"></span>-->
+<!--                            <span th:case="1" style="color: red" >Nguy hiểm</span>-->
+<!--                        </span>-->
                     </div>
                 </div>
                 <div style="right: 25px;" class="control-2">
@@ -304,12 +338,40 @@
                             </svg>
                             Phòng 2
                         </h3>
-                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <p></p></span>
-                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <p></p></span>
-                        <span><ion-icon name="nuclear"></ion-icon> Khí gas: <p></p></span>
-                        <span><ion-icon name="bulb"></ion-icon> Đèn: <p></p> </span>
-                        <span><ion-icon name="cog"></ion-icon> Quạt: <p></p></span>
-                        <span><ion-icon name="warning"></ion-icon> Trạng thái : An toàn</span>
+                        <span><ion-icon name="thermometer"></ion-icon> Nhiệt độ: <span
+                                th:each="element :${listEquipment}" th:if="${element.getId()==6}"
+                                th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="water"></ion-icon> Độ ẩm: <span th:each="element :${listEquipment}"
+                                                                              th:if="${element.getId()==7}"
+                                                                              th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="nuclear"></ion-icon> Khí độc: <span th:each="element :${listEquipment}"
+                                                                                  th:if="${element.getId()==8}"
+                                                                                  th:text="${element.getStatus()}"></span></span>
+                        <br>
+                        <span><ion-icon name="bulb"></ion-icon> Đèn: <span th:each="element :${listEquipment}" th:if="${element.getId()==9}">
+<!--                            <span th:if="${element.getStatus()}"><p>Bat</p></span>-->
+                            <!--                            <span th:utext="${!element.getStatus()}"><p>Tat</p></span>-->
+                            <span th:switch="${element.getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                        </span> </span>
+                        <br>
+                        <span><ion-icon name="cog"></ion-icon> Quạt: <span th:each="element :${listEquipment}"
+                                                                           th:if="${element.getId()==10}"
+                        >
+                             <span th:switch="${element.getStatus()}">
+                                <span th:case="0">Tắt</span>
+                                <span th:case="1">Bật</span>
+                            </span>
+                        </span></span>
+                        <br>
+<!--                        <span th:switch="${listEquipment.get(7).getStatus()}">-->
+<!--                            <span th:case="0" th:text="An toàn"></span>-->
+<!--                            <span th:case="1" style="color: red" >Nguy hiểm</span>-->
+<!--                        </span>-->
                     </div>
                 </div>
             </div>

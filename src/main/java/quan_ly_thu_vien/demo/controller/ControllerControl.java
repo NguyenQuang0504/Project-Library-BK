@@ -42,6 +42,29 @@ public class ControllerControl {
         }
         iEquimentService.updateStatusF(status);
     }
+    @GetMapping("/lamp2")
+    public void controlLamp2(String Status){
+        Integer status = Integer.parseInt(Status);
+        if (status == 0){
+            status =1;
+        }
+        else {
+            status = 0;
+        }
+        iEquimentService.updateStatusL2(status);
+    }
+    @GetMapping("/fan2")
+    public void controlFan2(String Status){
+        Integer status = Integer.parseInt(Status);
+        if (status==0){
+            status=1;
+        }
+        else {
+            status=0;
+        }
+        iEquimentService.updateStatusF2(status);
+    }
+
     @GetMapping("/responseLamp1")
     public String responseLamp1(){
         String status = iEquimentService.findStatusLamp1();
